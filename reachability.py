@@ -18,6 +18,14 @@ from compas.geometry import Frame
 from compas.geometry import Plane
 
 
+def get_directory(b,c):
+
+    a = os.getcwd()
+
+    path = os.path.join(a,b,c)
+
+    return path
+
 
 def save_JsonFile(path,name,vec,result_dict):
 
@@ -92,7 +100,7 @@ def connect_and_scene():
     robot = ros_client.load_robot()
 
     scene = PlanningScene(robot)
-    mesh = Mesh.from_stl('./examples_code/ground.stl')
+    mesh = Mesh.from_stl('./3dm/ground.stl')
     cm = CollisionMesh(mesh, 'ground')
     scene.add_collision_mesh(cm)
 
@@ -300,21 +308,30 @@ def main(robot, rob_num, planning_group, path, skip_rng):
         save_JsonFile(path, ranges["name"], vec, result_dict)
         # plot_dots(idx_soln, idx_no_soln)
 
+
+
+
 if __name__ == "__main__":
 
     rob_num = "rob1"
-    path = "/Users/edvard/Documents/github/ECL_robotic_cell/examples_code/_data/{}".format(rob_num)
-    # path = "C:\\Users\\Edvard\Documents\\GitHub\\ECL_robotic_cell\\examples_code\\_data\\{}".format(rob_num)
     planning_group = "robot1_track_gripper"
 
-    robot = connect_and_scene()
-    main(robot, rob_num, planning_group, path, skip_rng = range(0,50))
+    path = get_directory("_data",rob_num)
 
-    # merge_index = range(1,101)
-    # merge_num = 4
+    calc = True
+    merge = False
 
-    # for i in merge_index:
-    #     in_fps = generate_filepaths(path,rob_num, i, merge_num)
-    #     out_fp = os.path.join(path, "{}_vec{:0>2}_combined.json".format(rob_num,i))
+    if calc:
+        skip_rng = range(0,50)
+        robot = connect_and_scene()
+        main(robot, rob_num, planning_group, path, skip_rng)
 
-    #     merge_JsonFiles(in_fps, out_fp)
+    if merge:
+        merge_index = range(1,101)
+        merge_num = 4
+
+        for i in merge_index:
+            in_fps = generate_filepaths(path,rob_num, i, merge_num)
+            out_fp = os.path.join(path, "{}_vec{:0>2}_combined.json".format(rob_num,i))
+
+            merge_JsonFiles(in_fps, out_fp)
