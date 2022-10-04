@@ -1,0 +1,11 @@
+name: rob_fab_reach
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python==3.8.10
+  - numpy==1.23.3
+  - compas_fab==0.26.0
+  - tqdm==4.64.0
+  - jax==0.3.20 
+prefix: C:\Users\Edvard\.conda\envs\rob_fab_reach
