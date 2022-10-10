@@ -1,6 +1,8 @@
 #PROJECT SPECIFIC ADDS
 # -----------
 *.3dmbak
+output/*.png
+*.rhl
 # -----------
 
 # Byte-compiled / optimized / DLL files
