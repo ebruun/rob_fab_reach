@@ -208,17 +208,17 @@ def main(R_pnts, R_scores, pnts, L_max):
         print("length: {:.3f}/{:.3f}".format(np.linalg.norm(pnts[1] - pnts[0]), L_orig))
 
         # 1. EVAL FUNC
-        reach_score, grad = value_and_grad(func_reach_score_plus, (0))(
-            pnts, R_pnts, R_scores, L_max, L_orig
-        )
-        print("lam(x,y) = {:.3f}\n grad:\n {}".format(reach_score, grad._value))
-
-        # reach_score, grad = value_and_grad(func_reach_score,(0))(pnts,R_pnts,R_scores,L_max)
+        # reach_score, grad = value_and_grad(func_reach_score_plus, (0))(
+        #     pnts, R_pnts, R_scores, L_max, L_orig
+        # )
         # print("lam(x,y) = {:.3f}\n grad:\n {}".format(reach_score, grad._value))
 
+        reach_score, grad = value_and_grad(func_reach_score, (0))(pnts, R_pnts, R_scores, L_max)
+        print("lam(x,y) = {:.3f}\n grad:\n {}".format(reach_score, grad._value))
+
         # 2. BACKTRACK
-        # alphas = backtrack(R_pnts, R_scores, pnts, L_max, grad, flag=FALSE)
-        alphas = backtrack2(R_pnts, R_scores, pnts, L_max, grad, L_orig, flag=True)
+        alphas = backtrack(R_pnts, R_scores, pnts, L_max, grad, flag=True)
+        # alphas = backtrack2(R_pnts, R_scores, pnts, L_max, grad, L_orig, flag=True)
         pnts = pnts + (grad.T * alphas).T
         reach_score = func_reach_score2(pnts, R_pnts, R_scores, L_max)
 
@@ -230,7 +230,8 @@ def main(R_pnts, R_scores, pnts, L_max):
         pnts_save = np.vstack((pnts_save, pnt_save))
 
         # 4. TERMINATION
-        a = func_reach_score_plus(pnts, R_pnts, R_scores, L_max, L_orig)
+        # a = func_reach_score_plus(pnts, R_pnts, R_scores, L_max, L_orig)
+        a = func_reach_score(pnts, R_pnts, R_scores, L_max)
         print("{:.3f} --> {:.3f}".format(a, reach_score_save))
         if abs(a - reach_score_save) < 0.0001:
             break
@@ -243,61 +244,8 @@ def main(R_pnts, R_scores, pnts, L_max):
 
 if __name__ == "__main__":
 
-    # reach_points = jnp.array([
-    #     [3.0,1.0], #0
-    #     [5.0,1.0], #1
-    #     [7.0,1.0], #2
-    #     [3.0,3.0], #3
-    #     [5.0,3.0], #4
-    #     [7.0,3.0], #5
-    #     [3.0,5.0], #6
-    #     [5.0,5.0], #7
-    #     [7.0,5.0], #8
-    # ])
+    from _input_files.test_multi_pnt import reach_points, reach_scores, L_max, structure_pnt
 
-    # reach_scores = jnp.array([
-    #     0.2,
-    #     0.3,
-    #     1.0,
-    #     -0.2,
-    #     0.7,
-    #     0.9,
-    #     0.5,
-    #     0.7,
-    #     0.0
-    # ])
-
-    # L_max = 2.5
-
-    # structure_pnt = jnp.array([
-    #     [4.7,1.8],
-    #     [2.7,0.3],
-    # ])
-
-    reach_points = jnp.array(
-        [
-            [3.0, 1.0],  # 0
-            [5.0, 1.0],  # 1
-            [5.0, 3.0],  # 2
-            [3.0, 3.0],  # 3
-        ]
-    )
-
-    reach_scores = jnp.array(
-        [
-            0.5,
-            -0.2,
-            1.0,
-            -0.2,
-        ]
-    )
-
-    L_max = 2.5
-
-    structure_pnt = jnp.array(
-        [
-            [4.7, 1.8],
-        ]
-    )
+    # from _input_files.test_single_pnt import reach_points,reach_scores,L_max,structure_pnt
 
     main(reach_points, reach_scores, structure_pnt, L_max)
