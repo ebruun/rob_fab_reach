@@ -129,11 +129,17 @@ def points_ranges(rob_num, n):
         #     "k" : np.arange(-0.3,3.31,0.2),
         #     "name" : "{}_vec{:0>2}_3".format(rob_num,n+1)
         # }
+        # ranges = {
+        #     "i": np.arange(-1.5, 4.31, 0.2),
+        #     "j": np.arange(0.3, 4.51, 0.2),
+        #     "k": np.arange(-0.4, 3.41, 0.2),
+        #     "name": "{}_vec{:0>2}_4".format(rob_num, n + 1),
+        # }
         ranges = {
-            "i": np.arange(-1.5, 4.31, 0.2),
-            "j": np.arange(0.3, 4.51, 0.2),
-            "k": np.arange(-0.4, 3.41, 0.2),
-            "name": "{}_vec{:0>2}_4".format(rob_num, n + 1),
+            "i": np.arange(-1.5, 4.31, 0.1),
+            "j": np.arange(0.3, 4.61, 0.1),
+            "k": np.arange(-0.4, 3.41, 0.1),
+            "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
         }
 
     elif rob_num == "rob2":
@@ -174,12 +180,12 @@ def points_ranges(rob_num, n):
         #     "k" : np.arange(-0.4,3.41,0.2),
         #     "name" : "{}_vec{:0>2}_1".format(rob_num,n+1)
         # }
-        ranges = {
-            "i": np.arange(1.7, 4.31, 0.2),
-            "j": np.arange(0.3, 3.11, 0.2),
-            "k": np.arange(-0.3, 3.31, 0.2),
-            "name": "{}_vec{:0>2}_2".format(rob_num, n + 1),
-        }
+        # ranges = {
+        #     "i": np.arange(1.7, 4.31, 0.2),
+        #     "j": np.arange(0.3, 3.11, 0.2),
+        #     "k": np.arange(-0.3, 3.31, 0.2),
+        #     "name": "{}_vec{:0>2}_2".format(rob_num, n + 1),
+        # }
         # ranges = {
         #     "i" : np.arange(1.8,4.21,0.2),
         #     "j" : np.arange(0.4,3.01,0.2),
@@ -192,6 +198,12 @@ def points_ranges(rob_num, n):
         #     "k" : np.arange(-0.4,3.41,0.2),
         #     "name" : "{}_vec{:0>2}_4".format(rob_num,n+1)
         # }
+        ranges = {
+            "i": np.arange(1.7, 4.31, 0.1),
+            "j": np.arange(0.3, 3.11, 0.1),
+            "k": np.arange(-0.4, 3.41, 0.1),
+            "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
+        }
 
     num_points = len(ranges["i"]) * len(ranges["j"]) * len(ranges["k"])
 
@@ -328,7 +340,7 @@ if __name__ == "__main__":
     merge = False
 
     if calc:
-        skip_rng = range(110, 120)
+        skip_rng = range(0, 1)
         robot = connect_and_scene()
         main(robot, rob_num, planning_group, path, skip_rng)
 
