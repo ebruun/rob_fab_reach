@@ -261,7 +261,7 @@ def robot_config(robot, rob_num):
 
 
 def ik_calc(robot, frame, start_config, planning_group):
-    return robot.inverse_kinematics(frame, start_config, planning_group, options={"timeout": 0.01})
+    return robot.inverse_kinematics(frame, start_config, planning_group, options={"timeout": 0.1})
 
 
 def main(robot, rob_num, planning_group, path, skip_rng):
