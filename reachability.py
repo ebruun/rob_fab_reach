@@ -331,8 +331,8 @@ def main(robot, rob_num, planning_group, path, skip_rng):
 
 if __name__ == "__main__":
 
-    rob_num = "rob2"
-    planning_group = "robot2_track_gripper"
+    rob_num = "rob3"
+    planning_group = "robot3_gripper"
 
     path = get_directory("_data", rob_num)
 
@@ -340,7 +340,7 @@ if __name__ == "__main__":
     merge = False
 
     if calc:
-        skip_rng = range(0, 1)
+        skip_rng = range(110, 120)
         robot = connect_and_scene()
         main(robot, rob_num, planning_group, path, skip_rng)
 
