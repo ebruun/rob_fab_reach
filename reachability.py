@@ -335,23 +335,24 @@ if __name__ == "__main__":
     calc = True
     merge = False
 
-    rob_num = "rob1"
-    planning_group = "robot1_axis_gripper"
+    rob_nums = ["rob1","rob2","rob3"]
+    planning_groups = ["robot1_axis_gripper","robot2_axis_gripper","robot1_gripper"]
 
-    path = get_directory("_data", rob_num)
+    for rob_num, planning_group in zip(rob_nums,planning_groups):
 
+        path = get_directory("_data", rob_num)
 
-    if calc:
-        skip_rng = range(110, 120)
-        robot = connect_and_scene()
-        main(robot, rob_num, planning_group, path, skip_rng)
+        if calc:
+            skip_rng = range(110, 120)
+            robot = connect_and_scene()
+            main(robot, rob_num, planning_group, path, skip_rng)
 
-    if merge:
-        merge_index = range(1, 101)
-        merge_num = 4
+        if merge:
+            merge_index = range(1, 101)
+            merge_num = 4
 
-        for i in merge_index:
-            in_fps = generate_filepaths(path, rob_num, i, merge_num)
-            out_fp = os.path.join(path, "{}_vec{:0>2}_combined.json".format(rob_num, i))
+            for i in merge_index:
+                in_fps = generate_filepaths(path, rob_num, i, merge_num)
+                out_fp = os.path.join(path, "{}_vec{:0>2}_combined.json".format(rob_num, i))
 
-            merge_JsonFiles(in_fps, out_fp)
+                merge_JsonFiles(in_fps, out_fp)
