@@ -136,8 +136,8 @@ def points_ranges(rob_num, n):
         #     "name": "{}_vec{:0>2}_4".format(rob_num, n + 1),
         # }
         ranges = {
-            "i": np.arange(-1.5, 4.31, 0.1),
-            "j": np.arange(0.3, 4.61, 0.1),
+            "i": np.arange(-1.5, 6.01, 0.1),
+            "j": np.arange(0.3, 4.91, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
             "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
         }
@@ -168,8 +168,8 @@ def points_ranges(rob_num, n):
         #     "name" : "{}_vec{:0>2}_4".format(rob_num,n+1)
         # }
         ranges = {
-            "i": np.arange(-1.5, 4.31, 0.1),
-            "j": np.arange(-1.2, 3.11, 0.1),
+            "i": np.arange(-1.5, 6.01, 0.1),
+            "j": np.arange(-1.5, 3.11, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
             "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
         }
@@ -199,8 +199,8 @@ def points_ranges(rob_num, n):
         #     "name" : "{}_vec{:0>2}_4".format(rob_num,n+1)
         # }
         ranges = {
-            "i": np.arange(1.7, 4.31, 0.1),
-            "j": np.arange(0.3, 3.11, 0.1),
+            "i": np.arange(1.7, 8.01, 0.1),
+            "j": np.arange(-1.5, 4.91, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
             "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
         }
@@ -273,7 +273,7 @@ def robot_config(robot, rob_num):
 
 
 def ik_calc(robot, frame, start_config, planning_group):
-    return robot.inverse_kinematics(frame, start_config, planning_group, options={"timeout": 0.01})
+    return robot.inverse_kinematics(frame, start_config, planning_group, options={"timeout": 0.20})
 
 
 def main(robot, rob_num, planning_group, path, skip_rng):
@@ -331,13 +331,15 @@ def main(robot, rob_num, planning_group, path, skip_rng):
 
 if __name__ == "__main__":
 
-    rob_num = "rob3"
-    planning_group = "robot3_gripper"
-
-    path = get_directory("_data", rob_num)
 
     calc = True
     merge = False
+
+    rob_num = "rob1"
+    planning_group = "robot1_axis_gripper"
+
+    path = get_directory("_data", rob_num)
+
 
     if calc:
         skip_rng = range(110, 120)
