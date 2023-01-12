@@ -115,7 +115,7 @@ def points_ranges(rob_num, n):
         #     "i" : np.arange(-1.4,4.21,0.2),
         #     "j" : np.arange(0.4,4.61,0.2),
         #     "k" : np.arange(-0.4,3.41,0.2),
-        #     "name" : "{}_vec{:0>2}_1".format(rob_num,n+1)
+        #     "name" : "{}_vec{:0>2}_1_TEST".format(rob_num,n+1)
         # }
         # ranges = {
         #     "i" : np.arange(-1.5,4.31,0.2),
@@ -273,7 +273,7 @@ def robot_config(robot, rob_num):
 
 
 def ik_calc(robot, frame, start_config, planning_group):
-    return robot.inverse_kinematics(frame, start_config, planning_group, options={"timeout": 0.20})
+    return robot.inverse_kinematics(frame, start_config, planning_group, options={"timeout": 0.05})
 
 
 def main(robot, rob_num, planning_group, path, skip_rng):
@@ -331,19 +331,18 @@ def main(robot, rob_num, planning_group, path, skip_rng):
 
 if __name__ == "__main__":
 
-
     calc = True
     merge = False
 
     rob_nums = ["rob1","rob2","rob3"]
-    planning_groups = ["robot1_axis_gripper","robot2_axis_gripper","robot1_gripper"]
+    planning_groups = ["robot1_track_gripper","robot2_track_gripper","robot1_gripper"]
 
     for rob_num, planning_group in zip(rob_nums,planning_groups):
 
         path = get_directory("_data", rob_num)
 
         if calc:
-            skip_rng = range(110, 120)
+            skip_rng = range(0, 75)
             robot = connect_and_scene()
             main(robot, rob_num, planning_group, path, skip_rng)
 
