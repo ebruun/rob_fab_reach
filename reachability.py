@@ -334,15 +334,24 @@ if __name__ == "__main__":
     calc = True
     merge = False
 
-    rob_nums = ["rob3"]
-    planning_groups = ["robot3_gripper"]
+    rob_nums = [
+        "rob1",
+        # "rob2",
+        # "rob3"
+        ]
+
+    planning_groups = [
+        "robot1_track_gripper",
+        # "robot2_track_gripper",
+        # "robot3_gripper"
+        ]
 
     for rob_num, planning_group in zip(rob_nums,planning_groups):
 
         path = get_directory("_data", rob_num)
 
         if calc:
-            skip_rng = range(0, 20)
+            skip_rng = range(0, 95)
             robot = connect_and_scene()
             main(robot, rob_num, planning_group, path, skip_rng)
 
