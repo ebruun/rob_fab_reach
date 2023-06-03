@@ -288,7 +288,10 @@ def main(robot, rob_num, planning_group, path, skip_rng):
 
         bar = tqdm(
             points_in_box(p, vec, ranges),
-            bar_format="{desc}{postfix} | {n_fmt}/{total_fmt} | {percentage:3.0f}%|{bar}| {elapsed}/{remaining}",
+            bar_format=(
+                "{desc}{postfix} | {n_fmt}/{total_fmt} | {percentage:3.0f}%|{bar}|"
+                " {elapsed}/{remaining}"
+            ),
             total=total_points,
             desc="Progress Bar",
         )

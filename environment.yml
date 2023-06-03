@@ -10,6 +10,5 @@ dependencies:
   - jax==0.3.20 
   - matplotlib-base==3.5.2
   - pre-commit==2.20.0
-  # - black==23.3.0
   - flake8==6.0.0
 prefix: /opt/homebrew/anaconda3/envs/rob_fab_reach

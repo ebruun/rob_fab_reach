@@ -34,7 +34,8 @@
         "--experimental-string-processing"
     ],
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
     },
     //GITHUB (show hidden folder)
     "files.exclude": {

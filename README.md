@@ -15,9 +15,11 @@ check to see if this works for windows...
 
 ## Pre-commit
 
-make sure environemtn and .pre-commit versions match
+make sure .pre-commit-config.yaml file is up to date
 
 run this: `pre-commit install`
+
+in .vscode/settings.json make sure formatonsave = TRUE
 
 ## Note
 
