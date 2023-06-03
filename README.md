@@ -1,25 +1,26 @@
 # rob_fab_reach
 
-robotic reachability work
-
 Need to compose-up on the `ECL_3rob_cell` docker file in `ECL_Robotic_cell` repo for this to run
 
-This has no version number:
+## Making clean environment.yml file
 
-`conda env export --from-history --name compas_fab> environment.yml`
+export only explictly downloaded packages:
 
-create new:
+`conda env export --from-history --name rob_fab_reach > environment.yml`
 
+create new from environment.yml file:
 `conda env create`
 
-if you change the conda environment, make sure to update the file .git/hooks/pre-commit file
+check to see if this works for windows...
 
-`pre-commit install`
+## Pre-commit
 
-build from requirements in environment.yml.
+make sure environemtn and .pre-commit versions match
 
-But note that compas_fab 0.26.0 is updated from local fork where the ROS IK timeout definition is updated to allow floats
+run this: `pre-commit install`
 
-from local compas_fab branch directory run:
-`pip install -e .`
+## Note
+
+In compas_fab 0.27.0 the ROS IK timeout definition is updated to allow floats
+
 

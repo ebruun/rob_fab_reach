@@ -19,7 +19,6 @@ from compas.geometry import Plane
 
 
 def get_directory(b, c):
-
     a = os.getcwd()
 
     path = os.path.join(a, b, c)
@@ -28,7 +27,6 @@ def get_directory(b, c):
 
 
 def save_JsonFile(path, name, vec, result_dict):
-
     filepath = os.path.join(path, "{}.json".format(name))
 
     try:
@@ -47,7 +45,6 @@ def save_JsonFile(path, name, vec, result_dict):
 
 
 def merge_JsonFiles(in_filepaths, out_filepath):
-
     data_combined = {}
 
     with open(in_filepaths[0], "r") as f:
@@ -109,7 +106,6 @@ def connect_and_scene():
 
 
 def points_ranges(rob_num, n):
-
     if rob_num == "rob1":
         # ranges = {
         #     "i" : np.arange(-1.4,4.21,0.2),
@@ -281,7 +277,6 @@ def main(robot, rob_num, planning_group, path, skip_rng):
     start_config = robot_config(robot, rob_num)
 
     for n, vec in enumerate(axis_gen()):
-
         if n in skip_rng:
             continue
 
@@ -300,7 +295,6 @@ def main(robot, rob_num, planning_group, path, skip_rng):
 
         for frames in bar:
             for frame in frames:
-
                 bar.set_postfix(
                     {
                         "Vector": "{}/{}: {}".format(n + 1, 100, vec),
@@ -330,7 +324,6 @@ def main(robot, rob_num, planning_group, path, skip_rng):
 
 
 if __name__ == "__main__":
-
     calc = True
     merge = False
 
@@ -338,16 +331,15 @@ if __name__ == "__main__":
         "rob1",
         # "rob2",
         # "rob3"
-        ]
+    ]
 
     planning_groups = [
         "robot1_track_gripper",
         # "robot2_track_gripper",
         # "robot3_gripper"
-        ]
+    ]
 
-    for rob_num, planning_group in zip(rob_nums,planning_groups):
-
+    for rob_num, planning_group in zip(rob_nums, planning_groups):
         path = get_directory("_data", rob_num)
 
         if calc:

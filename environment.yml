@@ -8,7 +8,8 @@ dependencies:
   - compas_fab==0.27.0
   - tqdm==4.64.0
   - jax==0.3.20 
-  - flake8==4.0.1
   - pre-commit==2.20.0
   - matplotlib-base==3.5.2
-prefix: C:\Users\Edvard\.conda\envs\rob_fab_reach
+  - black==23.3.0
+  - flake8==6.0.0
+prefix: /opt/homebrew/anaconda3/envs/rob_fab_reach
