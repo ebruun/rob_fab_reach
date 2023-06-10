@@ -18,6 +18,11 @@ from compas.geometry import Frame
 from compas.geometry import Plane
 
 
+#################
+# I/O functions
+#################
+
+
 def get_directory(b, c):
     a = os.getcwd()
 
@@ -88,10 +93,13 @@ def plot_dots(idx_soln, idx_no_soln):
     plt.show()
 
 
-####################################
+#################
+# Path Planning Functions
+#################
 
 
 def connect_and_scene():
+    """ROS connection, adding collision meshes"""
     ros_client = RosClient("localhost")
     ros_client.run()
 
@@ -105,142 +113,8 @@ def connect_and_scene():
     return robot
 
 
-def points_ranges(rob_num, n):
-    if rob_num == "rob1":
-        # ranges = {
-        #     "i" : np.arange(-1.4,4.21,0.2),
-        #     "j" : np.arange(0.4,4.61,0.2),
-        #     "k" : np.arange(-0.4,3.41,0.2),
-        #     "name" : "{}_vec{:0>2}_1_TEST".format(rob_num,n+1)
-        # }
-        # ranges = {
-        #     "i" : np.arange(-1.5,4.31,0.2),
-        #     "j" : np.arange(0.3,4.51,0.2),
-        #     "k" : np.arange(-0.3,3.31,0.2),
-        #     "name" : "{}_vec{:0>2}_2".format(rob_num,n+1)
-        # }
-        # ranges = {
-        #     "i" : np.arange(-1.4,4.21,0.2),
-        #     "j" : np.arange(0.4,4.61,0.2),
-        #     "k" : np.arange(-0.3,3.31,0.2),
-        #     "name" : "{}_vec{:0>2}_3".format(rob_num,n+1)
-        # }
-        # ranges = {
-        #     "i": np.arange(-1.5, 4.31, 0.2),
-        #     "j": np.arange(0.3, 4.51, 0.2),
-        #     "k": np.arange(-0.4, 3.41, 0.2),
-        #     "name": "{}_vec{:0>2}_4".format(rob_num, n + 1),
-        # }
-        ranges = {
-            "i": np.arange(-1.5, 6.01, 0.1),
-            "j": np.arange(0.3, 4.91, 0.1),
-            "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
-        }
-
-    elif rob_num == "rob2":
-        # ranges = {
-        #     "i" : np.arange(-1.4,4.21,0.2),
-        #     "j" : np.arange(-1.2,3.01,0.2),
-        #     "k" : np.arange(-0.4,3.41,0.2),
-        #      "name" : "{}_vec{:0>2_1".format(rob_num,n+1)
-        # }
-        # ranges = {
-        #     "i": np.arange(-1.5, 4.31, 0.2),
-        #     "j": np.arange(-1.1, 3.11, 0.2),
-        #     "k": np.arange(-0.3, 3.31, 0.2),
-        #     "name": "{}_vec{:0>2}_2".format(rob_num, n + 1),
-        # }
-        # ranges = {
-        #     "i" : np.arange(-1.4,4.21,0.2),
-        #     "j" : np.arange(-1.2,3.01,0.2),
-        #     "k" : np.arange(-0.3,3.31,0.2),
-        #      "name" : "{}_vec{:0>2_3".format(rob_num,n+1)
-        # }
-        # ranges = {
-        #     "i" : np.arange(-1.5,4.31,0.2),
-        #     "j" : np.arange(-1.1,3.11,0.2),
-        #     "k" : np.arange(-0.4,3.41,0.2),
-        #     "name" : "{}_vec{:0>2}_4".format(rob_num,n+1)
-        # }
-        ranges = {
-            "i": np.arange(-1.5, 6.01, 0.1),
-            "j": np.arange(-1.5, 3.11, 0.1),
-            "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
-        }
-    elif rob_num == "rob3":
-        # ranges = {
-        #     "i" : np.arange(1.8,4.21,0.2),
-        #     "j" : np.arange(0.4,3.01,0.2),
-        #     "k" : np.arange(-0.4,3.41,0.2),
-        #     "name" : "{}_vec{:0>2}_1".format(rob_num,n+1)
-        # }
-        # ranges = {
-        #     "i": np.arange(1.7, 4.31, 0.2),
-        #     "j": np.arange(0.3, 3.11, 0.2),
-        #     "k": np.arange(-0.3, 3.31, 0.2),
-        #     "name": "{}_vec{:0>2}_2".format(rob_num, n + 1),
-        # }
-        # ranges = {
-        #     "i" : np.arange(1.8,4.21,0.2),
-        #     "j" : np.arange(0.4,3.01,0.2),
-        #     "k" : np.arange(-0.3,3.31,0.2),
-        #     "name" : "{}_vec{:0>2}_3".format(rob_num,n+1)
-        # }
-        # ranges = {
-        #     "i" : np.arange(1.7,4.31,0.2),
-        #     "j" : np.arange(0.3,3.11,0.2),
-        #     "k" : np.arange(-0.4,3.41,0.2),
-        #     "name" : "{}_vec{:0>2}_4".format(rob_num,n+1)
-        # }
-        ranges = {
-            "i": np.arange(1.7, 8.01, 0.1),
-            "j": np.arange(-1.5, 4.91, 0.1),
-            "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
-        }
-
-    num_points = len(ranges["i"]) * len(ranges["j"]) * len(ranges["k"])
-
-    return ranges, num_points
-
-
-def points_in_box(corner, axis, ranges):
-    for i in ranges["i"]:
-        for j in ranges["j"]:
-            for k in ranges["k"]:
-                x = round(i, 1) + corner.x
-                y = round(j, 1) + corner.y
-                z = round(k, 1) + corner.z
-
-                plane = Plane((x, y, z), axis)
-                f = Frame.from_plane(plane)
-
-                yield [Frame(f.point, f.xaxis, f.yaxis)]
-
-
-def axis_gen(samples=100):
-    # https://stackoverflow.com/questions/9600801/evenly-distributing-n-points-on-a-sphere
-    phi = math.pi * (3.0 - math.sqrt(5.0))  # golden angle in radians
-
-    for i in range(samples):
-        y = 1 - (i / float(samples - 1)) * 2  # y goes from 1 to -1
-        radius = math.sqrt(1 - y * y)  # radius at y
-
-        theta = phi * i  # golden angle increment
-
-        x = math.cos(theta) * radius
-        z = math.sin(theta) * radius
-
-        vec = np.array([x, y, z])
-        vec[abs(vec) < 1e-14] = 0.0
-        vec = vec / np.linalg.norm(vec)
-
-        yield vec
-
-
 def robot_config(robot, rob_num):
+    """Starting configuration for each robot in each IK run"""
     config_scaled = robot.zero_configuration()
 
     if rob_num == "rob1":
@@ -269,7 +143,82 @@ def robot_config(robot, rob_num):
 
 
 def ik_calc(robot, frame, start_config, planning_group):
+    """single IK calcultion"""
     return robot.inverse_kinematics(frame, start_config, planning_group, options={"timeout": 0.05})
+
+
+#################
+# Geometry Functions
+#################
+
+
+def points_ranges(rob_num, n):
+    """define the grid to search for each robot"""
+    if rob_num == "rob1":
+        ranges = {
+            "i": np.arange(-1.5, 6.01, 0.1),
+            "j": np.arange(0.3, 4.91, 0.1),
+            "k": np.arange(-0.4, 3.41, 0.1),
+            "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
+        }
+
+    elif rob_num == "rob2":
+        ranges = {
+            "i": np.arange(-1.5, 6.01, 0.1),
+            "j": np.arange(-1.5, 3.11, 0.1),
+            "k": np.arange(-0.4, 3.41, 0.1),
+            "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
+        }
+    elif rob_num == "rob3":
+        ranges = {
+            "i": np.arange(1.7, 8.01, 0.1),
+            "j": np.arange(-1.5, 4.91, 0.1),
+            "k": np.arange(-0.4, 3.41, 0.1),
+            "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
+        }
+
+    num_points = len(ranges["i"]) * len(ranges["j"]) * len(ranges["k"])
+
+    return ranges, num_points
+
+
+def points_in_box(corner, axis, ranges):
+    """make an IK frame for each point, given an axis
+    up to accuracy of 0.1m (based on round)
+    """
+    for i in ranges["i"]:
+        for j in ranges["j"]:
+            for k in ranges["k"]:
+                x = round(i, 1) + corner.x
+                y = round(j, 1) + corner.y
+                z = round(k, 1) + corner.z
+
+                plane = Plane((x, y, z), axis)
+                f = Frame.from_plane(plane)
+
+                yield [Frame(f.point, f.xaxis, f.yaxis)]
+
+
+def axis_gen(samples=100):
+    """create an evenly spaced set of vectors around a point
+    https://stackoverflow.com/questions/9600801/evenly-distributing-n-points-on-a-sphere
+    """
+    phi = math.pi * (3.0 - math.sqrt(5.0))  # golden angle in radians
+
+    for i in range(samples):
+        y = 1 - (i / float(samples - 1)) * 2  # y goes from 1 to -1
+        radius = math.sqrt(1 - y * y)  # radius at y
+
+        theta = phi * i  # golden angle increment
+
+        x = math.cos(theta) * radius
+        z = math.sin(theta) * radius
+
+        vec = np.array([x, y, z])
+        vec[abs(vec) < 1e-14] = 0.0
+        vec = vec / np.linalg.norm(vec)
+
+        yield vec
 
 
 def main(robot, rob_num, planning_group, path, skip_rng):
@@ -328,7 +277,7 @@ def main(robot, rob_num, planning_group, path, skip_rng):
 
 if __name__ == "__main__":
     calc = True
-    merge = False
+    # merge = False
 
     rob_nums = [
         "rob1",
@@ -345,17 +294,19 @@ if __name__ == "__main__":
     for rob_num, planning_group in zip(rob_nums, planning_groups):
         path = get_directory("_data", rob_num)
 
+        # perform calculation
         if calc:
-            skip_rng = range(0, 95)
+            skip_rng = range(0, 95)  # which steps to skip
             robot = connect_and_scene()
             main(robot, rob_num, planning_group, path, skip_rng)
 
-        if merge:
-            merge_index = range(1, 101)
-            merge_num = 4
+        # merge separate JSON files
+        # if merge:
+        #     merge_index = range(1, 101)
+        #     merge_num = 4
 
-            for i in merge_index:
-                in_fps = generate_filepaths(path, rob_num, i, merge_num)
-                out_fp = os.path.join(path, "{}_vec{:0>2}_combined.json".format(rob_num, i))
+        #     for i in merge_index:
+        #         in_fps = generate_filepaths(path, rob_num, i, merge_num)
+        #         out_fp = os.path.join(path, "{}_vec{:0>2}_combined.json".format(rob_num, i))
 
-                merge_JsonFiles(in_fps, out_fp)
+        #         merge_JsonFiles(in_fps, out_fp)
