@@ -114,7 +114,7 @@ def connect_and_scene():
 
 
 def robot_config(robot, rob_num):
-    """Starting configuration for each robot in each IK run"""
+    """Starting configuration for each robot to be used in each IK run"""
     config_scaled = robot.zero_configuration()
 
     if rob_num == "rob1":
@@ -143,8 +143,14 @@ def robot_config(robot, rob_num):
 
 
 def ik_calc(robot, frame, start_config, planning_group):
-    """single IK calcultion"""
-    return robot.inverse_kinematics(frame, start_config, planning_group, options={"timeout": 0.05})
+    """single IK calcultion, given failure timeout"""
+
+    set_timeout = 0.05  # important variable, controls overall runtime
+
+    # catch the error if timeout reached = no IK solution
+    return robot.inverse_kinematics(
+        frame, start_config, planning_group, options={"timeout": set_timeout}
+    )
 
 
 #################
@@ -153,7 +159,7 @@ def ik_calc(robot, frame, start_config, planning_group):
 
 
 def points_ranges(rob_num, n):
-    """define the grid to search for each robot"""
+    """define the grid of points to search for each robot in each run"""
     if rob_num == "rob1":
         ranges = {
             "i": np.arange(-1.5, 6.01, 0.1),
@@ -182,16 +188,19 @@ def points_ranges(rob_num, n):
     return ranges, num_points
 
 
-def points_in_box(corner, axis, ranges):
-    """make an IK frame for each point, given an axis
+def frame_gen(axis, ranges):
+    """generator function for a frame at each point, given the axis for this run
     up to accuracy of 0.1m (based on round)
     """
+
+    p = Point(0.0, 0.0, 0.0)  # if want to offset (for some reason?)
+
     for i in ranges["i"]:
         for j in ranges["j"]:
             for k in ranges["k"]:
-                x = round(i, 1) + corner.x
-                y = round(j, 1) + corner.y
-                z = round(k, 1) + corner.z
+                x = round(i, 1) + p.x
+                y = round(j, 1) + p.y
+                z = round(k, 1) + p.z
 
                 plane = Plane((x, y, z), axis)
                 f = Frame.from_plane(plane)
@@ -200,7 +209,7 @@ def points_in_box(corner, axis, ranges):
 
 
 def axis_gen(samples=100):
-    """create an evenly spaced set of vectors around a point
+    """generator function for an evenly spaced set of vectors in on a sphere
     https://stackoverflow.com/questions/9600801/evenly-distributing-n-points-on-a-sphere
     """
     phi = math.pi * (3.0 - math.sqrt(5.0))  # golden angle in radians
@@ -222,21 +231,22 @@ def axis_gen(samples=100):
 
 
 def main(robot, rob_num, planning_group, path, skip_rng):
-    p = Point(0.0, 0.0, 0.0)
     start_config = robot_config(robot, rob_num)
 
+    # loop based on vector, go through each point with the same vector
     for n, vec in enumerate(axis_gen()):
         if n in skip_rng:
-            continue
+            continue  # don't proceed with calculations
 
-        ranges, total_points = points_ranges(rob_num, n)
-
+        # initialize variabkles to save data to for this run
         idx_no_soln = []
         idx_soln = []
         result_dict = {}
 
+        ranges, total_points = points_ranges(rob_num, n)
+
         bar = tqdm(
-            points_in_box(p, vec, ranges),
+            frame_gen(vec, ranges),
             bar_format=(
                 "{desc}{postfix} | {n_fmt}/{total_fmt} | {percentage:3.0f}%|{bar}|"
                 " {elapsed}/{remaining}"
@@ -271,6 +281,7 @@ def main(robot, rob_num, planning_group, path, skip_rng):
                     aa = str([round(x + 0, 2) for x in frame.point]).strip("[]")  # +0 to avoid -0.0
                     result_dict[aa] = False
 
+        # After all points checked for particular vector
         save_JsonFile(path, ranges["name"], vec, result_dict)
         # plot_dots(idx_soln, idx_no_soln)
 
