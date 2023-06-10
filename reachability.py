@@ -118,12 +118,12 @@ def robot_config(robot, rob_num):
     config_scaled = robot.zero_configuration()
 
     if rob_num == "rob1":
-        config1 = [-90.0, 0.0, 0.0, 0.0, 90.0, 180, 100]
+        config1 = [-90.0, 0.0, 0.0, 0.0, 90.0, 180, 1950]
         config2 = [90.0, 0.0, 0.0, 0.0, 90.0, 180, 100]
         config3 = [180.0, 0.0, 0.0, 0.0, 90.0, 180.0]
     elif rob_num == "rob2":
         config1 = [90.0, 0.0, 0.0, 0.0, 90.0, 180, 3800]
-        config2 = [90.0, 0.0, 0.0, 0.0, 90.0, 180, 3900]
+        config2 = [90.0, 0.0, 0.0, 0.0, 90.0, 180, 1950]
         config3 = [180.0, 0.0, 0.0, 0.0, 90.0, 180.0]
     elif rob_num == "rob3":
         config1 = [-90.0, 0.0, 0.0, 0.0, 90.0, 180, 3800]
@@ -298,7 +298,7 @@ if __name__ == "__main__":
 
     planning_groups = [
         "robot1_notrack_gripper",
-        # "robot2_track_gripper",
+        # "robot2_notrack_gripper",
         # "robot3_gripper"
     ]
 
