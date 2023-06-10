@@ -145,7 +145,7 @@ def robot_config(robot, rob_num):
 def ik_calc(robot, frame, start_config, planning_group):
     """single IK calcultion, given failure timeout"""
 
-    set_timeout = 0.05  # important variable, controls overall runtime
+    set_timeout = 0.10  # important variable, controls overall runtime
 
     # catch the error if timeout reached = no IK solution
     return robot.inverse_kinematics(
@@ -297,7 +297,7 @@ if __name__ == "__main__":
     ]
 
     planning_groups = [
-        "robot1_track_gripper",
+        "robot1_notrack_gripper",
         # "robot2_track_gripper",
         # "robot3_gripper"
     ]
@@ -307,7 +307,7 @@ if __name__ == "__main__":
 
         # perform calculation
         if calc:
-            skip_rng = range(0, 95)  # which steps to skip
+            skip_rng = range(101, 102)  # which steps to skip
             robot = connect_and_scene()
             main(robot, rob_num, planning_group, path, skip_rng)
 
