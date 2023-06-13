@@ -1,0 +1,13 @@
+{
+    "arch_info": {
+        "angle": 30.0, 
+        "ratio": 1.5, 
+        "width": 6.0
+    }, 
+    "data": {
+        "total_points": 151, 
+        "points_reach": 100, 
+        "total_average_value": 61, 
+        "points_notreach": 51
+    }
+}
