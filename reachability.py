@@ -49,7 +49,8 @@ def save_JsonFile(path, name, vec, result_dict):
         print("write to file not working")
 
 
-def merge_JsonFiles(in_filepaths, out_filepath):
+def append_JsonFiles(in_filepaths, out_filepath):
+    """concatenate several JSON files"""
     data_combined = {}
 
     with open(in_filepaths[0], "r") as f:
@@ -67,10 +68,59 @@ def merge_JsonFiles(in_filepaths, out_filepath):
         f.close()
 
 
+def combine_JsonFiles(in_filepaths, out_filepath):
+    """combine data from several JSON files
+    add up how many total TRUE values each point has
+    """
+    data_combined = {}
+
+    # initialize the counting dictionary
+    with open(in_filepaths[0], "r") as f:
+        print("loading {}".format(in_filepaths[0]))
+        data_combined = json.load(f)
+        f.close()
+
+        data_combined["vector"] = 1
+
+        # replace True/False with 1/0
+        for key, value in data_combined["results"].items():
+            if value:
+                data_combined["results"][key] = 1
+            else:
+                data_combined["results"][key] = 0
+
+    # read in rest of data files
+    for in_filepath in in_filepaths[1:]:
+        with open(in_filepath, "r") as f:
+            print("loading {}".format(in_filepath))
+            data = json.load(f)
+            f.close()
+
+            data_combined["vector"] += 1
+
+            # increment anywhere there is True with 1
+            for key, value in data["results"].items():
+                if value:
+                    data_combined["results"][key] += 1
+
+    with open(out_filepath, "w") as f:
+        json.dump(data_combined, f, indent=4)
+        f.close()
+
+
 def generate_filepaths(path, rob_num, index, merge_num):
     filepaths = []
     for i in range(1, merge_num + 1):
-        name = "{}_vec{:0>2}_{}".format(rob_num, index, i)
+        name = "{}_vec{:0>3}_{}".format(rob_num, index, i)
+        filepaths.append(os.path.join(path, "{}.json".format(name)))
+
+    return filepaths
+
+
+def generate_filepaths_combined(path, rob_num, merge_range):
+    filepaths = []
+    for i in merge_range:
+        name = "{}_vec{:0>3}".format(rob_num, i)
         filepaths.append(os.path.join(path, "{}.json".format(name)))
 
     return filepaths
@@ -145,7 +195,7 @@ def robot_config(robot, rob_num):
 def ik_calc(robot, frame, start_config, planning_group):
     """single IK calcultion, given failure timeout"""
 
-    set_timeout = 0.10  # important variable, controls overall runtime
+    set_timeout = 0.05  # important variable, controls overall runtime
 
     # catch the error if timeout reached = no IK solution
     return robot.inverse_kinematics(
@@ -165,7 +215,7 @@ def points_ranges(rob_num, n):
             "i": np.arange(-1.5, 6.01, 0.1),
             "j": np.arange(0.3, 4.91, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
+            "name": "{}_vec{:0>3}".format(rob_num, n + 1),
         }
 
     elif rob_num == "rob2":
@@ -173,14 +223,14 @@ def points_ranges(rob_num, n):
             "i": np.arange(-1.5, 6.01, 0.1),
             "j": np.arange(-1.5, 3.11, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
+            "name": "{}_vec{:0>3}".format(rob_num, n + 1),
         }
     elif rob_num == "rob3":
         ranges = {
             "i": np.arange(1.7, 8.01, 0.1),
             "j": np.arange(-1.5, 4.91, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>2}_combo".format(rob_num, n + 1),
+            "name": "{}_vec{:0>3}".format(rob_num, n + 1),
         }
 
     num_points = len(ranges["i"]) * len(ranges["j"]) * len(ranges["k"])
@@ -230,7 +280,7 @@ def axis_gen(samples=100):
         yield vec
 
 
-def main(robot, rob_num, planning_group, path, skip_rng):
+def main_calc(robot, rob_num, planning_group, path, skip_rng):
     start_config = robot_config(robot, rob_num)
 
     # loop based on vector, go through each point with the same vector
@@ -287,8 +337,9 @@ def main(robot, rob_num, planning_group, path, skip_rng):
 
 
 if __name__ == "__main__":
-    calc = True
-    # merge = False
+    calc = False
+    merge = False
+    combine = True
 
     rob_nums = [
         "rob1",
@@ -307,17 +358,25 @@ if __name__ == "__main__":
 
         # perform calculation
         if calc:
-            skip_rng = range(101, 102)  # which steps to skip
+            skip_rng = range(0, 17)  # which steps to skip
             robot = connect_and_scene()
-            main(robot, rob_num, planning_group, path, skip_rng)
+            main_calc(robot, rob_num, planning_group, path, skip_rng)
 
         # merge separate JSON files
-        # if merge:
-        #     merge_index = range(1, 101)
-        #     merge_num = 4
+        if merge:
+            merge_index = range(1, 101)  # for which steps to do a merge
+            merge_num = 4  # how many files to merge together
 
-        #     for i in merge_index:
-        #         in_fps = generate_filepaths(path, rob_num, i, merge_num)
-        #         out_fp = os.path.join(path, "{}_vec{:0>2}_combined.json".format(rob_num, i))
+            for i in merge_index:
+                in_fps = generate_filepaths(path, rob_num, i, merge_num)
+                out_fp = os.path.join(path, "{}_vec{:0>3}_combined.json".format(rob_num, i))
 
-        #         merge_JsonFiles(in_fps, out_fp)
+                append_JsonFiles(in_fps, out_fp)
+
+        if combine:
+            combine_index = range(1, 18)  # for which steps to do a merge
+
+            in_fps = generate_filepaths_combined(path, rob_num, combine_index)
+            out_fp = os.path.join(path, "_{}_TOTAL.json".format(rob_num))
+
+            combine_JsonFiles(in_fps, out_fp)
