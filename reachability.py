@@ -337,19 +337,19 @@ def main_calc(robot, rob_num, planning_group, path, skip_rng):
 
 
 if __name__ == "__main__":
-    calc = False
+    calc = True
     merge = False
-    combine = True
+    combine = False
 
     rob_nums = [
-        "rob1",
-        # "rob2",
+        # "rob1",
+        "rob2",
         # "rob3"
     ]
 
     planning_groups = [
-        "robot1_notrack_gripper",
-        # "robot2_notrack_gripper",
+        # "robot1_notrack_gripper",
+        "robot2_notrack_gripper",
         # "robot3_gripper"
     ]
 
@@ -358,7 +358,7 @@ if __name__ == "__main__":
 
         # perform calculation
         if calc:
-            skip_rng = range(0, 17)  # which steps to skip
+            skip_rng = range(0, 30)  # which steps to skip
             robot = connect_and_scene()
             main_calc(robot, rob_num, planning_group, path, skip_rng)
 
