@@ -358,7 +358,7 @@ if __name__ == "__main__":
 
         # perform calculation
         if calc:
-            skip_rng = range(0, 30)  # which steps to skip
+            skip_rng = range(0, 39)  # which steps to skip
             robot = connect_and_scene()
             main_calc(robot, rob_num, planning_group, path, skip_rng)
 
