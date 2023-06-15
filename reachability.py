@@ -211,19 +211,31 @@ def ik_calc(robot, frame, start_config, planning_group):
 def points_ranges(rob_num, n):
     """define the grid of points to search for each robot in each run"""
     if rob_num == "rob1":
+        # ranges = {
+        #     "i": np.arange(-1.5, 6.01, 0.1),
+        #     "j": np.arange(0.3, 4.91, 0.1),
+        #     "k": np.arange(-0.4, 3.41, 0.1),
+        #     "name": "{}_vec{:0>3}".format(rob_num, n + 1),
+        # }
         ranges = {
-            "i": np.arange(-1.5, 6.01, 0.1),
+            "i": np.arange(-3.2, -1.41, 0.1),
             "j": np.arange(0.3, 4.91, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>3}".format(rob_num, n + 1),
+            "name": "{}_vec{:0>3}_2".format(rob_num, n + 1),
         }
 
     elif rob_num == "rob2":
+        # ranges = {
+        #     "i": np.arange(-1.5, 6.01, 0.1),
+        #     "j": np.arange(-1.5, 3.11, 0.1),
+        #     "k": np.arange(-0.4, 3.41, 0.1),
+        #     "name": "{}_vec{:0>3}".format(rob_num, n + 1),
+        # }
         ranges = {
-            "i": np.arange(-1.5, 6.01, 0.1),
+            "i": np.arange(-3.2, -1.41, 0.1),
             "j": np.arange(-1.5, 3.11, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>3}".format(rob_num, n + 1),
+            "name": "{}_vec{:0>3}_2".format(rob_num, n + 1),
         }
     elif rob_num == "rob3":
         ranges = {
@@ -342,23 +354,23 @@ if __name__ == "__main__":
     combine = False
 
     rob_nums = [
-        # "rob1",
-        "rob2",
+        "rob1",
+        # "rob2",
         # "rob3"
     ]
 
     planning_groups = [
-        # "robot1_notrack_gripper",
-        "robot2_notrack_gripper",
+        "robot1_track_gripper",
+        # "robot2_track_gripper",
         # "robot3_gripper"
     ]
 
     for rob_num, planning_group in zip(rob_nums, planning_groups):
-        path = get_directory("_data", rob_num)
+        path = get_directory("_data_track", rob_num)
 
         # perform calculation
         if calc:
-            skip_rng = range(0, 30)  # which steps to skip
+            skip_rng = range(101, 102)  # which steps to skip
             robot = connect_and_scene()
             main_calc(robot, rob_num, planning_group, path, skip_rng)
 
