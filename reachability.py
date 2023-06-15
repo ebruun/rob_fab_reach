@@ -108,20 +108,21 @@ def combine_JsonFiles(in_filepaths, out_filepath):
         f.close()
 
 
-def generate_filepaths(path, rob_num, index, merge_num):
+def generate_filepaths_append(path, filenames, rob_num, idx):
     filepaths = []
-    for i in range(1, merge_num + 1):
-        name = "{}_vec{:0>3}_{}".format(rob_num, index, i)
-        filepaths.append(os.path.join(path, "{}.json".format(name)))
+
+    for filename in filenames:
+        filename = filename.format(rob_num, idx)
+        filepaths.append(os.path.join(path, filename))
 
     return filepaths
 
 
-def generate_filepaths_combined(path, rob_num, merge_range):
+def generate_filepaths_combined(path, filename, rob_num, merge_range):
     filepaths = []
     for i in merge_range:
-        name = "{}_vec{:0>3}".format(rob_num, i)
-        filepaths.append(os.path.join(path, "{}.json".format(name)))
+        filename = filename.format(rob_num, i)
+        filepaths.append(os.path.join(path, filename))
 
     return filepaths
 
@@ -211,11 +212,17 @@ def ik_calc(robot, frame, start_config, planning_group):
 def points_ranges(rob_num, n):
     """define the grid of points to search for each robot in each run"""
     if rob_num == "rob1":
+        # ranges = {
+        #     "i": np.arange(-1.5, 6.01, 0.1),
+        #     "j": np.arange(0.3, 4.91, 0.1),
+        #     "k": np.arange(-0.4, 3.41, 0.1),
+        #     "name": "{}_vec{:0>3}".format(rob_num, n),
+        # }
         ranges = {
-            "i": np.arange(-1.5, 6.01, 0.1),
+            "i": np.arange(-3.2, -1.59, 0.1),
             "j": np.arange(0.3, 4.91, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>3}".format(rob_num, n + 1),
+            "name": "{}_vec{:0>3}_2".format(rob_num, n),
         }
 
     elif rob_num == "rob2":
@@ -223,14 +230,20 @@ def points_ranges(rob_num, n):
             "i": np.arange(-1.5, 6.01, 0.1),
             "j": np.arange(-1.5, 3.11, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>3}".format(rob_num, n + 1),
+            "name": "{}_vec{:0>3}".format(rob_num, n),
         }
+        # ranges = {
+        #     "i": np.arange(-3.2, -1.59, 0.1),
+        #     "j": np.arange(-1.5, 3.11, 0.1),
+        #     "k": np.arange(-0.4, 3.41, 0.1),
+        #     "name": "{}_vec{:0>3}_2".format(rob_num, n),
+        # }
     elif rob_num == "rob3":
         ranges = {
             "i": np.arange(1.7, 8.01, 0.1),
             "j": np.arange(-1.5, 4.91, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>3}".format(rob_num, n + 1),
+            "name": "{}_vec{:0>3}".format(rob_num, n),
         }
 
     num_points = len(ranges["i"]) * len(ranges["j"]) * len(ranges["k"])
@@ -280,103 +293,110 @@ def axis_gen(samples=100):
         yield vec
 
 
-def main_calc(robot, rob_num, planning_group, path, skip_rng):
+def main_calc(robot, rob_num, planning_group, path, analysis_rng):
     start_config = robot_config(robot, rob_num)
 
     # loop based on vector, go through each point with the same vector
     for n, vec in enumerate(axis_gen()):
-        if n in skip_rng:
-            continue  # don't proceed with calculations
+        if (n + 1) in analysis_rng:
+            # initialize variables to save data to for this run
+            idx_no_soln = []
+            idx_soln = []
+            result_dict = {}
 
-        # initialize variabkles to save data to for this run
-        idx_no_soln = []
-        idx_soln = []
-        result_dict = {}
+            ranges, total_points = points_ranges(rob_num, n)
 
-        ranges, total_points = points_ranges(rob_num, n)
+            bar = tqdm(
+                frame_gen(vec, ranges),
+                bar_format=(
+                    "{desc}{postfix} | {n_fmt}/{total_fmt} | {percentage:3.0f}%|{bar}|"
+                    " {elapsed}/{remaining}"
+                ),
+                total=total_points,
+                desc="Progress Bar",
+            )
 
-        bar = tqdm(
-            frame_gen(vec, ranges),
-            bar_format=(
-                "{desc}{postfix} | {n_fmt}/{total_fmt} | {percentage:3.0f}%|{bar}|"
-                " {elapsed}/{remaining}"
-            ),
-            total=total_points,
-            desc="Progress Bar",
-        )
+            for frames in bar:
+                for frame in frames:
+                    bar.set_postfix(
+                        {
+                            "Vector": "{}/{}: {}".format(n + 1, 100, vec),
+                            "Point": frame.point,
+                            "success": len(idx_soln),
+                            "failure": len(idx_no_soln),
+                        }
+                    )
 
-        for frames in bar:
-            for frame in frames:
-                bar.set_postfix(
-                    {
-                        "Vector": "{}/{}: {}".format(n + 1, 100, vec),
-                        "Point": frame.point,
-                        "success": len(idx_soln),
-                        "failure": len(idx_no_soln),
-                    }
-                )
+                    try:
+                        _ = ik_calc(robot, frame, start_config, planning_group)
+                        success = 1
+                    except RosValidationError:
+                        success = 0
 
-                try:
-                    _ = ik_calc(robot, frame, start_config, planning_group)
-                    success = 1
-                except RosValidationError:
-                    success = 0
+                    if success:
+                        idx_soln.append(frame.point)
+                        aa = str([round(x + 0, 2) for x in frame.point]).strip(
+                            "[]"
+                        )  # +0 to avoid -0.0
+                        result_dict[aa] = True
+                    else:
+                        idx_no_soln.append(frame.point)
+                        aa = str([round(x + 0, 2) for x in frame.point]).strip(
+                            "[]"
+                        )  # +0 to avoid -0.0
+                        result_dict[aa] = False
 
-                if success:
-                    idx_soln.append(frame.point)
-                    aa = str([round(x + 0, 2) for x in frame.point]).strip("[]")  # +0 to avoid -0.0
-                    result_dict[aa] = True
-                else:
-                    idx_no_soln.append(frame.point)
-                    aa = str([round(x + 0, 2) for x in frame.point]).strip("[]")  # +0 to avoid -0.0
-                    result_dict[aa] = False
-
-        # After all points checked for particular vector
-        save_JsonFile(path, ranges["name"], vec, result_dict)
-        # plot_dots(idx_soln, idx_no_soln)
+            # After all points checked for particular vector
+            save_JsonFile(path, ranges["name"], vec, result_dict)
+            # plot_dots(idx_soln, idx_no_soln)
 
 
 if __name__ == "__main__":
     calc = True
-    merge = False
+    append = False
     combine = False
 
     rob_nums = [
-        # "rob1",
-        "rob2",
+        "rob1",
+        # "rob2",
         # "rob3"
     ]
 
     planning_groups = [
-        # "robot1_notrack_gripper",
-        "robot2_notrack_gripper",
+        "robot1_track_gripper",
+        # "robot2_track_gripper",
         # "robot3_gripper"
     ]
 
+    operations_range = range(41, 101)
+    data_folder = "_data_track"
+
     for rob_num, planning_group in zip(rob_nums, planning_groups):
-        path = get_directory("_data", rob_num)
+        path = get_directory(data_folder, rob_num)
 
         # perform calculation
         if calc:
-            skip_rng = range(0, 39)  # which steps to skip
+            analysis_index = operations_range  # which steps to perform calculation
             robot = connect_and_scene()
-            main_calc(robot, rob_num, planning_group, path, skip_rng)
+            main_calc(robot, rob_num, planning_group, path, analysis_index)
 
-        # merge separate JSON files
-        if merge:
-            merge_index = range(1, 101)  # for which steps to do a merge
-            merge_num = 4  # how many files to merge together
+        # append/merge separate JSON files
+        if append:
+            append_index = operations_range  # for which steps to do a merge
+            append_files = ["{}_vec{:0>3}.json", "{}_vec{:0>3}_2.json"]
 
-            for i in merge_index:
-                in_fps = generate_filepaths(path, rob_num, i, merge_num)
-                out_fp = os.path.join(path, "{}_vec{:0>3}_combined.json".format(rob_num, i))
+            for i in append_index:
+                in_fps = generate_filepaths_append(path, append_files, rob_num, i)
+                out_fp = os.path.join(path, "{}_vec{:0>3}__combined.json".format(rob_num, i))
 
                 append_JsonFiles(in_fps, out_fp)
 
+        # Combine a range of files into a single file, counting TRUE values
         if combine:
-            combine_index = range(1, 18)  # for which steps to do a merge
+            combine_index = operations_range  # for which steps combine all the data
+            filename = name = "{}_vec{:0>3}.json"
 
-            in_fps = generate_filepaths_combined(path, rob_num, combine_index)
+            in_fps = generate_filepaths_combined(path, filename, rob_num, combine_index)
             out_fp = os.path.join(path, "_{}_TOTAL.json".format(rob_num))
 
             combine_JsonFiles(in_fps, out_fp)
