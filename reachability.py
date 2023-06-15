@@ -368,7 +368,7 @@ if __name__ == "__main__":
         # "robot3_gripper"
     ]
 
-    operations_range = range(1, 42)
+    operations_range = range(1, 43)
     data_folder = "_data_track"
 
     for rob_num, planning_group in zip(rob_nums, planning_groups):
@@ -395,7 +395,7 @@ if __name__ == "__main__":
         if combine:
             combine_index = operations_range  # for which steps combine all the data
 
-            filename = name = "{}_vec{:0>3}.json"
+            filename = name = "{}_vec{:0>3}__combined.json"
 
             in_fps = generate_filepaths_combined(path, filename, rob_num, combine_index)
             out_fp = os.path.join(path, "_{}_TOTAL.json".format(rob_num))
