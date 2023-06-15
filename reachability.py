@@ -121,8 +121,8 @@ def generate_filepaths_append(path, filenames, rob_num, idx):
 def generate_filepaths_combined(path, filename, rob_num, merge_range):
     filepaths = []
     for i in merge_range:
-        filename = filename.format(rob_num, i)
-        filepaths.append(os.path.join(path, filename))
+        filename_i = filename.format(rob_num, i)
+        filepaths.append(os.path.join(path, filename_i))
 
     return filepaths
 
@@ -352,9 +352,9 @@ def main_calc(robot, rob_num, planning_group, path, analysis_rng):
 
 
 if __name__ == "__main__":
-    calc = True
+    calc = False
     append = False
-    combine = False
+    combine = True
 
     rob_nums = [
         "rob1",
@@ -368,7 +368,7 @@ if __name__ == "__main__":
         # "robot3_gripper"
     ]
 
-    operations_range = range(41, 101)
+    operations_range = range(1, 42)
     data_folder = "_data_track"
 
     for rob_num, planning_group in zip(rob_nums, planning_groups):
@@ -394,6 +394,7 @@ if __name__ == "__main__":
         # Combine a range of files into a single file, counting TRUE values
         if combine:
             combine_index = operations_range  # for which steps combine all the data
+
             filename = name = "{}_vec{:0>3}.json"
 
             in_fps = generate_filepaths_combined(path, filename, rob_num, combine_index)
