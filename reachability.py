@@ -304,7 +304,7 @@ def main_calc(robot, rob_num, planning_group, path, analysis_rng):
             idx_soln = []
             result_dict = {}
 
-            ranges, total_points = points_ranges(rob_num, n)
+            ranges, total_points = points_ranges(rob_num, n + 1)
 
             bar = tqdm(
                 frame_gen(vec, ranges),
