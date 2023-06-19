@@ -226,18 +226,18 @@ def points_ranges(rob_num, n):
         }
 
     elif rob_num == "rob2":
-        ranges = {
-            "i": np.arange(-1.5, 6.01, 0.1),
-            "j": np.arange(-1.5, 3.11, 0.1),
-            "k": np.arange(-0.4, 3.41, 0.1),
-            "name": "{}_vec{:0>3}".format(rob_num, n),
-        }
         # ranges = {
-        #     "i": np.arange(-3.2, -1.59, 0.1),
+        #     "i": np.arange(-1.5, 6.01, 0.1),
         #     "j": np.arange(-1.5, 3.11, 0.1),
         #     "k": np.arange(-0.4, 3.41, 0.1),
-        #     "name": "{}_vec{:0>3}_2".format(rob_num, n),
+        #     "name": "{}_vec{:0>3}".format(rob_num, n),
         # }
+        ranges = {
+            "i": np.arange(-3.2, -1.59, 0.1),
+            "j": np.arange(-1.5, 3.11, 0.1),
+            "k": np.arange(-0.4, 3.41, 0.1),
+            "name": "{}_vec{:0>3}_2".format(rob_num, n),
+        }
     elif rob_num == "rob3":
         ranges = {
             "i": np.arange(1.7, 8.01, 0.1),
@@ -352,23 +352,23 @@ def main_calc(robot, rob_num, planning_group, path, analysis_rng):
 
 
 if __name__ == "__main__":
-    calc = False
+    calc = True
     append = False
-    combine = True
+    combine = False
 
     rob_nums = [
-        "rob1",
-        # "rob2",
+        # "rob1",
+        "rob2",
         # "rob3"
     ]
 
     planning_groups = [
-        "robot1_track_gripper",
-        # "robot2_track_gripper",
+        # "robot1_track_gripper",
+        "robot2_track_gripper",
         # "robot3_gripper"
     ]
 
-    operations_range = range(1, 43)
+    operations_range = range(1, 101)
     data_folder = "_data_track"
 
     for rob_num, planning_group in zip(rob_nums, planning_groups):
