@@ -1,0 +1,14 @@
+{
+    "arch_info": {
+        "angle": 0.0, 
+        "width": 6.0, 
+        "ratio": 2.0
+    }, 
+    "data": {
+        "bricks_total": 185, 
+        "bricks_reach": 88, 
+        "bricks_notreach": 97, 
+        "reach_ratio": 0.47999999999999998, 
+        "avg_reach_score": 53
+    }
+}
