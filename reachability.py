@@ -213,19 +213,31 @@ def points_ranges(rob_num, n):
     """define the grid of points to search for each robot in each run"""
     if rob_num == "rob1":
         ranges = {
-            "i": np.arange(-1.5, 6.01, 0.1),
+            "i": np.arange(-3.2, 6.01, 0.1),
             "j": np.arange(0.3, 4.91, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
             "name": "{}_vec{:0>3}".format(rob_num, n),
         }
+        # ranges = {
+        #     "i": np.arange(-1.5, 6.01, 0.1),
+        #     "j": np.arange(0.3, 4.91, 0.1),
+        #     "k": np.arange(-0.4, 3.41, 0.1),
+        #     "name": "{}_vec{:0>3}".format(rob_num, n),
+        # }
 
     elif rob_num == "rob2":
         ranges = {
-            "i": np.arange(-1.5, 6.01, 0.1),
+            "i": np.arange(-3.2, 6.01, 0.1),
             "j": np.arange(-1.5, 3.11, 0.1),
             "k": np.arange(-0.4, 3.41, 0.1),
             "name": "{}_vec{:0>3}".format(rob_num, n),
         }
+        # ranges = {
+        #     "i": np.arange(-1.5, 6.01, 0.1),
+        #     "j": np.arange(-1.5, 3.11, 0.1),
+        #     "k": np.arange(-0.4, 3.41, 0.1),
+        #     "name": "{}_vec{:0>3}".format(rob_num, n),
+        # }
  
     elif rob_num == "rob3":
         ranges = {
@@ -341,9 +353,9 @@ def main_calc(robot, rob_num, planning_group, path, analysis_rng):
 
 
 if __name__ == "__main__":
-    calc = False
+    calc = True
     append = False
-    combine = True
+    combine = False
 
     rob_nums = [
         # "rob1",
@@ -352,8 +364,8 @@ if __name__ == "__main__":
     ]
 
     planning_groups = [
-        "robot1_notrack_gripper",
-        # "robot2_notrack_gripper",
+        # "robot1_notrack_gripper",
+        "robot2_notrack_gripper",
         # "robot3_gripper"
     ]
 
