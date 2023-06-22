@@ -226,7 +226,7 @@ def points_ranges(rob_num, n):
             "k": np.arange(-0.4, 3.41, 0.1),
             "name": "{}_vec{:0>3}".format(rob_num, n),
         }
-
+ 
     elif rob_num == "rob3":
         ranges = {
             "i": np.arange(1.7, 8.01, 0.1),
@@ -341,13 +341,13 @@ def main_calc(robot, rob_num, planning_group, path, analysis_rng):
 
 
 if __name__ == "__main__":
-    calc = True
+    calc = False
     append = False
-    combine = False
+    combine = True
 
     rob_nums = [
-        "rob1",
-        # "rob2",
+        # "rob1",
+        "rob2",
         # "rob3"
     ]
 
@@ -357,7 +357,7 @@ if __name__ == "__main__":
         # "robot3_gripper"
     ]
 
-    operations_range = range(75, 101)
+    operations_range = range(1, 101)
     data_folder = "_data"
 
     for rob_num, planning_group in zip(rob_nums, planning_groups):
@@ -384,7 +384,7 @@ if __name__ == "__main__":
         if combine:
             combine_index = operations_range  # for which steps combine all the data
 
-            filename = name = "{}_vec{:0>3}__combined.json"
+            filename = name = "{}_vec{:0>3}.json"
 
             in_fps = generate_filepaths_combined(path, filename, rob_num, combine_index)
             out_fp = os.path.join(path, "_{}_TOTAL.json".format(rob_num))
