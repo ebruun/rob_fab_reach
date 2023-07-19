@@ -218,12 +218,6 @@ def points_ranges(rob_num, n):
             "k": np.arange(-0.4, 3.41, 0.1),
             "name": "{}_vec{:0>3}".format(rob_num, n),
         }
-        # ranges = {
-        #     "i": np.arange(-1.5, 6.01, 0.1),
-        #     "j": np.arange(0.3, 4.91, 0.1),
-        #     "k": np.arange(-0.4, 3.41, 0.1),
-        #     "name": "{}_vec{:0>3}".format(rob_num, n),
-        # }
 
     elif rob_num == "rob2":
         ranges = {
@@ -232,12 +226,6 @@ def points_ranges(rob_num, n):
             "k": np.arange(-0.4, 3.41, 0.1),
             "name": "{}_vec{:0>3}".format(rob_num, n),
         }
-        # ranges = {
-        #     "i": np.arange(-1.5, 6.01, 0.1),
-        #     "j": np.arange(-1.5, 3.11, 0.1),
-        #     "k": np.arange(-0.4, 3.41, 0.1),
-        #     "name": "{}_vec{:0>3}".format(rob_num, n),
-        # }
  
     elif rob_num == "rob3":
         ranges = {
