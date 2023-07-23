@@ -32,7 +32,7 @@ def save_json(path,dims,data):
         json.dump(data,f,indent=4)
         f.close()
 
-def read_json_data(files_in,txt):
+def read_json_data_reach(files_in,txt):
     lines_data = []
     i = 0
 
@@ -87,6 +87,61 @@ def read_json_data(files_in,txt):
 
     return lines_data
 
+
+def read_json_data_force(files_in,txt,force_limit):
+    lines_data = []
+    i = 0
+
+    for file_in in files_in:
+
+        with open(file_in, 'r') as f:
+            data_in = json.load(f)
+
+            print("opening: {}".format(data_in["arch_info"]))
+
+            ratio = data_in["arch_info"]["ratio"]
+
+            force_100 = data_in["analysis_data"]["100%"]["rob_support_kg"]
+            force_75 = data_in["analysis_data"]["75%"]["rob_support_kg"]
+            force_50 = data_in["analysis_data"]["50%"]["rob_support_kg"]
+
+            if i%6 == 0:
+                lines_data.append(txt[0])
+                lines_data.append(txt[1].format(ratio))
+
+            if force_50 > force_limit:
+                lines_data.append(txt[5].format(
+                    "lightred",
+                    force_100,
+                    force_75,
+                    force_50,
+                    ))
+            elif force_75 > force_limit:
+                lines_data.append(txt[5].format(
+                    "lightyellow",
+                    force_100,
+                    force_75,
+                    force_50,
+                    ))    
+            elif force_100 > force_limit:
+                lines_data.append(txt[5].format(
+                    "babyblue",
+                    force_100,
+                    force_75,
+                    force_50,
+                    ))                  
+            else:
+                lines_data.append(txt[4].format(
+                    force_100,
+                    force_75,
+                    force_50,
+                    ))      
+
+            i += 1
+            f.close()
+
+    return lines_data
+
 def write_text_data(path,file_out,lines_data):
 
     filepath_out = os.path.join(path, file_out)
@@ -112,19 +167,26 @@ paths = [
     'C:/Users/Edvard/Documents/GitHub/rob_fab_reach/_data_notrack/results_planar_arches',
 ]
 
+force_limit = [
+    60,
+    400
+]
+
 angles = [0,15,30,45]
 spans = [2.0,3.0,4.0,5.0,6.0,7.0]
 ratios = [0.25,0.50,0.75,1.0,1.5,2.0]
 
 txt = [
-    "\\\\\cmidrule{2-8}\\\\[-1.3em]",
+    "\\\\[-0.2em]\cmidrule{2-8}\\\\[-1.3em]",
     "&\multicolumn{{1}}{{c|}}{{\makecell[cc]{{\\\\{:.2f}}}}}",
     "&\\tiny{{\makecell[cc]{{n={}\\\\{:.0f}\\%:{}\\\\{:.0f}\\%:{}}}}}",
     "&\\tiny\cellcolor{{{}}}{{\makecell[cc]{{n={}\\\\{:.0f}\\%:{}\\\\{:.0f}\\%:{}}}}}",
+    "&\\tiny{{\makecell[cc]{{{}\\\\{}\\\\{}}}}}",
+    "&\\tiny\cellcolor{{{}}}{{\makecell[cc]{{{}\\\\{}\\\\{}}}}}",
 ]
 
 
-file_out = "_a{:0>2}_reachability_latex.txt"
+file_out = ["_a{:0>2}_reachability_latex.txt","_a{:0>2}_force_latex.txt"]
 
 
 
@@ -140,12 +202,17 @@ for angle_idx in angle_idxs:
 
     files_in = generate_filepaths(paths[path_idx],angles[angle_idx],spans,ratios)
 
-    lines_data = read_json_data(files_in,txt)
-
+    lines_data = read_json_data_reach(files_in,txt)
     lines_data.pop(0) #remove 1st line
-    print(lines_data)
 
-    files_out_save = file_out.format(angles[angle_idx])
+    file_out_save = file_out[0].format(angles[angle_idx])
 
-    write_text_data(paths[path_idx],files_out_save, lines_data)
+    write_text_data(paths[path_idx],file_out_save, lines_data)
+
+    lines_data = read_json_data_force(files_in,txt, force_limit[path_idx])
+    lines_data.pop(0) #remove 1st line
+
+    file_out_save = file_out[1].format(angles[angle_idx])
+
+    write_text_data(paths[path_idx],file_out_save, lines_data)
 
