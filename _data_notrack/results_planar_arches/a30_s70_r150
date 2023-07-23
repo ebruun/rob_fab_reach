@@ -4,73 +4,19 @@
         "span": 7.0, 
         "ratio": 1.5
     }, 
-    "reach_data": {
+    "reach_data_coop": {
         "bricks_total": 175, 
-        "bricks_reach": 54, 
-        "bricks_notreach": 121, 
-        "reach_ratio": 0.31, 
-        "avg_reach_score": 12
+        "bricks_reach": 15, 
+        "bricks_notreach": 160, 
+        "reach_ratio": 0.089999999999999997, 
+        "avg_reach_score": 3
     }, 
-    "analysis_data": {
-        "100%": {
-            "mass_kg": 796.91999999999996, 
-            "disp_cm": 52.076500000000003, 
-            "rob_support_kg": 298.08999999999997, 
-            "rxn_force_kn": [
-                -0.16, 
-                0.0, 
-                5.0
-            ], 
-            "rxn_mom_knm": [
-                11.65, 
-                7.29, 
-                0.0
-            ]
-        }, 
-        "75%": {
-            "mass_kg": 596.54999999999995, 
-            "disp_cm": 15.5871, 
-            "rob_support_kg": 222.97999999999999, 
-            "rxn_force_kn": [
-                -0.70999999999999996, 
-                0.19, 
-                3.8599999999999999
-            ], 
-            "rxn_mom_knm": [
-                6.4500000000000002, 
-                1.28, 
-                0.0
-            ]
-        }, 
-        "50%": {
-            "mass_kg": 400.74000000000001, 
-            "disp_cm": 1.018, 
-            "rob_support_kg": 135.69, 
-            "rxn_force_kn": [
-                -1.0600000000000001, 
-                0.79000000000000004, 
-                3.8100000000000001
-            ], 
-            "rxn_mom_knm": [
-                1.8500000000000001, 
-                0.27000000000000002, 
-                0.0
-            ]
-        }, 
-        "25%": {
-            "mass_kg": 200.37, 
-            "disp_cm": 0.054699999999999999, 
-            "rob_support_kg": 50.049999999999997, 
-            "rxn_force_kn": [
-                -0.14000000000000001, 
-                0.16, 
-                1.52
-            ], 
-            "rxn_mom_knm": [
-                0.40999999999999998, 
-                0.23999999999999999, 
-                0.0
-            ]
-        }
-    }
+    "reach_data_single": {
+        "bricks_total": 175, 
+        "bricks_reach": 56, 
+        "bricks_notreach": 119, 
+        "reach_ratio": 0.32000000000000001, 
+        "avg_reach_score": 14
+    }, 
+    "analysis_data": {}
 }

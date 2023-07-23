@@ -4,73 +4,19 @@
         "span": 6.0, 
         "ratio": 0.25
     }, 
-    "reach_data": {
+    "reach_data_coop": {
         "bricks_total": 83, 
-        "bricks_reach": 72, 
-        "bricks_notreach": 11, 
-        "reach_ratio": 0.87, 
+        "bricks_reach": 62, 
+        "bricks_notreach": 21, 
+        "reach_ratio": 0.75, 
+        "avg_reach_score": 89
+    }, 
+    "reach_data_single": {
+        "bricks_total": 83, 
+        "bricks_reach": 71, 
+        "bricks_notreach": 12, 
+        "reach_ratio": 0.85999999999999999, 
         "avg_reach_score": 91
     }, 
-    "analysis_data": {
-        "100%": {
-            "mass_kg": 379.06, 
-            "disp_cm": 1.1525000000000001, 
-            "rob_support_kg": 255.33000000000001, 
-            "rxn_force_kn": [
-                -1.9399999999999999, 
-                0.0, 
-                2.1600000000000001
-            ], 
-            "rxn_mom_knm": [
-                0.93000000000000005, 
-                1.72, 
-                0.0
-            ]
-        }, 
-        "75%": {
-            "mass_kg": 283.14999999999998, 
-            "disp_cm": 0.31990000000000002, 
-            "rob_support_kg": 213.05000000000001, 
-            "rxn_force_kn": [
-                -1.8500000000000001, 
-                0.11, 
-                1.8200000000000001
-            ], 
-            "rxn_mom_knm": [
-                0.46000000000000002, 
-                0.95999999999999996, 
-                0.0
-            ]
-        }, 
-        "50%": {
-            "mass_kg": 191.81, 
-            "disp_cm": 0.059799999999999999, 
-            "rob_support_kg": 140.55000000000001, 
-            "rxn_force_kn": [
-                -1.29, 
-                0.16, 
-                1.3999999999999999
-            ], 
-            "rxn_mom_knm": [
-                0.17999999999999999, 
-                0.52000000000000002, 
-                0.0
-            ]
-        }, 
-        "25%": {
-            "mass_kg": 95.909999999999997, 
-            "disp_cm": 0.0040000000000000001, 
-            "rob_support_kg": 33.100000000000001, 
-            "rxn_force_kn": [
-                -0.13, 
-                0.02, 
-                0.62
-            ], 
-            "rxn_mom_knm": [
-                0.050000000000000003, 
-                0.16, 
-                0.0
-            ]
-        }
-    }
+    "analysis_data": {}
 }

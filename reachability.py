@@ -260,6 +260,8 @@ def frame_gen(axis, ranges):
                 yield [Frame(f.point, f.xaxis, f.yaxis)]
 
 
+
+
 def axis_gen(samples=100):
     """generator function for an evenly spaced set of vectors in on a sphere
     https://stackoverflow.com/questions/9600801/evenly-distributing-n-points-on-a-sphere

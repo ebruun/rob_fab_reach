@@ -45,18 +45,42 @@ def read_json_data(files_in,txt):
 
             ratio = data_in["arch_info"]["ratio"]
 
-            bricks_total = data_in["reach_data"]["bricks_total"]
-            reach_ratio = data_in["reach_data"]["reach_ratio"]
-            avg_reach_score = data_in["reach_data"]["avg_reach_score"]
+            bricks_total = data_in["reach_data_coop"]["bricks_total"]
+            reach_ratio_coop = data_in["reach_data_coop"]["reach_ratio"]
+            reach_ratio_single = data_in["reach_data_single"]["reach_ratio"]
+            avg_reach_score_coop = data_in["reach_data_coop"]["avg_reach_score"]
+            avg_reach_score_single = data_in["reach_data_single"]["avg_reach_score"]
 
             if i%6 == 0:
                 lines_data.append(txt[0])
                 lines_data.append(txt[1].format(ratio))
 
-            if reach_ratio < 1.0:
-                lines_data.append(txt[3].format(bricks_total,reach_ratio*100,"-"))
+            if reach_ratio_single < 1.0 and reach_ratio_coop < 1.0:
+                lines_data.append(txt[3].format(
+                    "lightred",
+                    bricks_total,
+                    reach_ratio_single*100,
+                    "-",
+                    reach_ratio_coop*100,
+                    "-"
+                    ))
+            elif reach_ratio_single == 1.0 and reach_ratio_coop < 1.0:
+                lines_data.append(txt[3].format(
+                    "lightyellow",
+                    bricks_total,
+                    reach_ratio_single*100,
+                    avg_reach_score_single,
+                    reach_ratio_coop*100,
+                    "-"
+                    ))                
             else:
-                lines_data.append(txt[2].format(bricks_total,reach_ratio*100,avg_reach_score))
+                lines_data.append(txt[2].format(
+                    bricks_total,
+                    reach_ratio_single*100,
+                    avg_reach_score_single,
+                    reach_ratio_coop*100,
+                    avg_reach_score_coop
+                    ))
 
             i += 1
             f.close()
@@ -94,10 +118,9 @@ ratios = [0.25,0.50,0.75,1.0,1.5,2.0]
 
 txt = [
     "\\\\\cmidrule{2-8}\\\\[-1.3em]",
-    "&\multicolumn{{1}}{{c|}}{{\makecell[cc]{{\\\\{}}}}}",
-    "&\scriptsize{{\makecell[cc]{{n={}\\\\{:.0f}\%\\\\{}}}}}",
-    "&\scriptsize\cellcolor{{lightred}}{{\makecell[cc]{{n={}\\\\{:.0f}\%\\\\{}}}}}",
-    
+    "&\multicolumn{{1}}{{c|}}{{\makecell[cc]{{\\\\{:.2f}}}}}",
+    "&\\tiny{{\makecell[cc]{{n={}\\\\{:.0f}\\%:{}\\\\{:.0f}\\%:{}}}}}",
+    "&\\tiny\cellcolor{{{}}}{{\makecell[cc]{{n={}\\\\{:.0f}\\%:{}\\\\{:.0f}\\%:{}}}}}",
 ]
 
 
@@ -113,7 +136,7 @@ files_out = [
 ##################
 
 angle_idx = 3
-path_idx = 0
+path_idx = 1
 
 files_in = generate_filepaths(paths[path_idx],angles[angle_idx],spans,ratios)
 
