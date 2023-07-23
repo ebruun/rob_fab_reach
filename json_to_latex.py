@@ -118,14 +118,14 @@ def read_json_data_force(files_in,txt,force_limit):
                     ))
             elif force_75 > force_limit:
                 lines_data.append(txt[5].format(
-                    "lightyellow",
+                    "lightred",
                     force_100,
                     force_75,
                     force_50,
                     ))    
             elif force_100 > force_limit:
                 lines_data.append(txt[5].format(
-                    "babyblue",
+                    "lightyellow",
                     force_100,
                     force_75,
                     force_50,
@@ -168,7 +168,7 @@ paths = [
 ]
 
 force_limit = [
-    60,
+    90,
     400
 ]
 
@@ -181,8 +181,8 @@ txt = [
     "&\multicolumn{{1}}{{c|}}{{\makecell[cc]{{\\\\{:.2f}}}}}",
     "&\\tiny{{\makecell[cc]{{n={}\\\\{:.0f}\\%:{}\\\\{:.0f}\\%:{}}}}}",
     "&\\tiny\cellcolor{{{}}}{{\makecell[cc]{{n={}\\\\{:.0f}\\%:{}\\\\{:.0f}\\%:{}}}}}",
-    "&\\tiny{{\makecell[cc]{{{}\\\\{}\\\\{}}}}}",
-    "&\\tiny\cellcolor{{{}}}{{\makecell[cc]{{{}\\\\{}\\\\{}}}}}",
+    "&\\tiny{{\makecell[cc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
+    "&\\tiny\cellcolor{{{}}}{{\makecell[cc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
 ]
 
 
