@@ -55,7 +55,7 @@ def read_json_data(files_in,txt):
                 lines_data.append(txt[0])
                 lines_data.append(txt[1].format(ratio))
 
-            if reach_ratio_single < 1.0 and reach_ratio_coop < 1.0:
+            if reach_ratio_single < 0.99 and reach_ratio_coop < 0.99:
                 lines_data.append(txt[3].format(
                     "lightred",
                     bricks_total,
@@ -64,7 +64,7 @@ def read_json_data(files_in,txt):
                     reach_ratio_coop*100,
                     "-"
                     ))
-            elif reach_ratio_single == 1.0 and reach_ratio_coop < 1.0:
+            elif reach_ratio_single == 1.0 and reach_ratio_coop < 0.99:
                 lines_data.append(txt[3].format(
                     "lightyellow",
                     bricks_total,
@@ -135,17 +135,19 @@ files_out = [
 # RUN CODE
 ##################
 
-angle_idx = 3
-path_idx = 1
+angle_idxs = [0,1,2,3]
+path_idx = 0
 
-files_in = generate_filepaths(paths[path_idx],angles[angle_idx],spans,ratios)
+for angle_idx in angle_idxs:
 
-lines_data = read_json_data(files_in,txt)
+    files_in = generate_filepaths(paths[path_idx],angles[angle_idx],spans,ratios)
 
-lines_data.pop(0) #remove 1st line
-print(lines_data)
+    lines_data = read_json_data(files_in,txt)
 
-files_out = [file_out.format(angles[angle_idx]) for file_out in files_out]
+    lines_data.pop(0) #remove 1st line
+    print(lines_data)
 
-write_text_data(paths[path_idx],files_out[0], lines_data)
+    files_out = [file_out.format(angles[angle_idx]) for file_out in files_out]
+
+    write_text_data(paths[path_idx],files_out[0], lines_data)
 

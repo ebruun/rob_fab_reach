@@ -6,17 +6,17 @@
     }, 
     "reach_data_coop": {
         "bricks_total": 78, 
-        "bricks_reach": 74, 
-        "bricks_notreach": 4, 
-        "reach_ratio": 0.94999999999999996, 
-        "avg_reach_score": 86
+        "bricks_reach": 78, 
+        "bricks_notreach": 0, 
+        "reach_ratio": 1.0, 
+        "avg_reach_score": 90
     }, 
     "reach_data_single": {
         "bricks_total": 78, 
         "bricks_reach": 78, 
         "bricks_notreach": 0, 
         "reach_ratio": 1.0, 
-        "avg_reach_score": 89
+        "avg_reach_score": 90
     }, 
     "analysis_data": {}
 }

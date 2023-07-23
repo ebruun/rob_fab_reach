@@ -6,17 +6,17 @@
     }, 
     "reach_data_coop": {
         "bricks_total": 150, 
-        "bricks_reach": 83, 
-        "bricks_notreach": 67, 
-        "reach_ratio": 0.55000000000000004, 
-        "avg_reach_score": 65
+        "bricks_reach": 91, 
+        "bricks_notreach": 59, 
+        "reach_ratio": 0.60999999999999999, 
+        "avg_reach_score": 71
     }, 
     "reach_data_single": {
         "bricks_total": 150, 
-        "bricks_reach": 83, 
-        "bricks_notreach": 67, 
-        "reach_ratio": 0.55000000000000004, 
-        "avg_reach_score": 65
+        "bricks_reach": 91, 
+        "bricks_notreach": 59, 
+        "reach_ratio": 0.60999999999999999, 
+        "avg_reach_score": 71
     }, 
     "analysis_data": {}
 }
