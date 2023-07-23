@@ -124,9 +124,7 @@ txt = [
 ]
 
 
-files_out = [
-    "_a{:0>2}_reachability_latex.txt",
-]
+file_out = "_a{:0>2}_reachability_latex.txt"
 
 
 
@@ -136,7 +134,7 @@ files_out = [
 ##################
 
 angle_idxs = [0,1,2,3]
-path_idx = 0
+path_idx = 1
 
 for angle_idx in angle_idxs:
 
@@ -147,7 +145,7 @@ for angle_idx in angle_idxs:
     lines_data.pop(0) #remove 1st line
     print(lines_data)
 
-    files_out = [file_out.format(angles[angle_idx]) for file_out in files_out]
+    files_out_save = file_out.format(angles[angle_idx])
 
-    write_text_data(paths[path_idx],files_out[0], lines_data)
+    write_text_data(paths[path_idx],files_out_save, lines_data)
 
