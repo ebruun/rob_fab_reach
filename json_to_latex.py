@@ -196,7 +196,7 @@ file_out = ["_a{:0>2}_reachability_latex.txt","_a{:0>2}_force_latex.txt"]
 ##################
 
 angle_idxs = [0,1,2,3]
-path_idx = 0
+path_idx = 1
 
 for angle_idx in angle_idxs:
 
