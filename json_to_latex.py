@@ -32,7 +32,7 @@ def save_json(path,dims,data):
         json.dump(data,f,indent=4)
         f.close()
 
-def read_json_data_reach(files_in,txt):
+def read_json_data_info(files_in,txt):
     lines_data = []
     i = 0
 
@@ -46,6 +46,35 @@ def read_json_data_reach(files_in,txt):
             ratio = data_in["arch_info"]["ratio"]
 
             bricks_total = data_in["reach_data_coop"]["bricks_total"]
+            mass_total = data_in["analysis_data"]["100%"]["mass_kg"]
+
+            if i%6 == 0:
+                lines_data.append(txt[0])
+                lines_data.append(txt[1].format(ratio))
+
+            lines_data.append(txt[6].format(
+                bricks_total,
+                mass_total,
+                ))
+
+            i += 1
+            f.close()
+
+    return lines_data
+
+def read_json_data_reach(files_in,txt):
+    lines_data = []
+    i = 0
+
+    for file_in in files_in:
+
+        with open(file_in, 'r') as f:
+            data_in = json.load(f)
+
+            print("opening: {}".format(data_in["arch_info"]))
+
+            ratio = data_in["arch_info"]["ratio"]
+
             reach_ratio_coop = data_in["reach_data_coop"]["reach_ratio"]
             reach_ratio_single = data_in["reach_data_single"]["reach_ratio"]
             avg_reach_score_coop = data_in["reach_data_coop"]["avg_reach_score"]
@@ -58,28 +87,22 @@ def read_json_data_reach(files_in,txt):
             if reach_ratio_single < 0.99 and reach_ratio_coop < 0.99:
                 lines_data.append(txt[3].format(
                     "lightred",
-                    bricks_total,
                     reach_ratio_single*100,
-                    "-",
                     reach_ratio_coop*100,
-                    "-"
+                    avg_reach_score_single,
                     ))
             elif reach_ratio_single == 1.0 and reach_ratio_coop < 0.99:
                 lines_data.append(txt[3].format(
                     "lightyellow",
-                    bricks_total,
                     reach_ratio_single*100,
-                    avg_reach_score_single,
                     reach_ratio_coop*100,
-                    "-"
+                    avg_reach_score_single,
                     ))                
             else:
                 lines_data.append(txt[2].format(
-                    bricks_total,
                     reach_ratio_single*100,
-                    avg_reach_score_single,
                     reach_ratio_coop*100,
-                    avg_reach_score_coop
+                    avg_reach_score_single,
                     ))
 
             i += 1
@@ -168,8 +191,8 @@ paths = [
 ]
 
 force_limit = [
-    90,
-    400
+    70,
+    235
 ]
 
 angles = [0,15,30,45]
@@ -178,15 +201,20 @@ ratios = [0.25,0.50,0.75,1.0,1.5,2.0]
 
 txt = [
     "\\\\[-0.2em]\cmidrule{2-8}\\\\[-1.3em]",
-    "&\multicolumn{{1}}{{c|}}{{\makecell[cc]{{\\\\{:.2f}}}}}",
-    "&\\tiny{{\makecell[cc]{{n={}\\\\{:.0f}\\%:{}\\\\{:.0f}\\%:{}}}}}",
-    "&\\tiny\cellcolor{{{}}}{{\makecell[cc]{{n={}\\\\{:.0f}\\%:{}\\\\{:.0f}\\%:{}}}}}",
-    "&\\tiny{{\makecell[cc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
-    "&\\tiny\cellcolor{{{}}}{{\makecell[cc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
+    "&\multicolumn{{1}}{{c|}}{{\makecell[lc]{{\\\\{:.2f}}}}}",
+    "&\\tiny{{\makecell[lc]{{S:{:.0f}\\%\\\\C:{:.0f}\\%\\\\fab:{}}}}}",
+    "&\\tiny\cellcolor{{{}}}{{\makecell[lc]{{S:{:.0f}\\%\\\\C:{:.0f}\\%\\\\fab:{}}}}}",
+    "&\\tiny{{\makecell[lc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
+    "&\\tiny\cellcolor{{{}}}{{\makecell[lc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
+    "&\\scriptsize{{\makecell[lc]{{n={}\\\\{:.0f}kg}}}}",
 ]
 
 
-file_out = ["_a{:0>2}_reachability_latex.txt","_a{:0>2}_force_latex.txt"]
+file_out = [
+    "_a{:0>2}_reachability_latex.txt",
+    "_a{:0>2}_force_latex.txt",
+    "_a{:0>2}_info_latex.txt",
+    ]
 
 
 
@@ -196,7 +224,14 @@ file_out = ["_a{:0>2}_reachability_latex.txt","_a{:0>2}_force_latex.txt"]
 ##################
 
 angle_idxs = [0,1,2,3]
-path_idx = 1
+path_idx = 0
+
+files_in = generate_filepaths(paths[path_idx],angles[0],spans,ratios)
+
+lines_data = read_json_data_info(files_in,txt)
+lines_data.pop(0) #remove 1st line
+file_out_save = file_out[2].format(angles[0])
+write_text_data(paths[path_idx],file_out_save, lines_data)
 
 for angle_idx in angle_idxs:
 
@@ -204,15 +239,11 @@ for angle_idx in angle_idxs:
 
     lines_data = read_json_data_reach(files_in,txt)
     lines_data.pop(0) #remove 1st line
-
     file_out_save = file_out[0].format(angles[angle_idx])
-
     write_text_data(paths[path_idx],file_out_save, lines_data)
 
     lines_data = read_json_data_force(files_in,txt, force_limit[path_idx])
     lines_data.pop(0) #remove 1st line
-
     file_out_save = file_out[1].format(angles[angle_idx])
-
     write_text_data(paths[path_idx],file_out_save, lines_data)
 
