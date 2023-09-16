@@ -11,8 +11,6 @@ export only explictly downloaded packages:
 create new from environment.yml file:
 `conda env create`
 
-check to see if this works for windows...
-
 ## Linting and Pre-commit
 
 make sure .pre-commit-config.yaml file is up to date
