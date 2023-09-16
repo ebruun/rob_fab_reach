@@ -46,7 +46,10 @@ def read_json_data_info(files_in,txt):
             ratio = data_in["arch_info"]["ratio"]
 
             bricks_total = data_in["reach_data_coop"]["bricks_total"]
-            mass_total = data_in["analysis_data"]["100%"]["mass_kg"]
+            # mass_total = data_in["analysis_data"]["100%"]["mass_kg"]
+
+            #correct self-weight, for some reason karamba output total weight wrong
+            mass_total = bricks_total * 2.70928 #kg/brick
 
             if i%6 == 0:
                 lines_data.append(txt[0])
@@ -191,8 +194,8 @@ paths = [
 ]
 
 force_limit = [
-    70,
-    235
+    70, #IRB5710-70/2.70
+    235 #IRB6700-235/2.65
 ]
 
 angles = [0,15,30,45]
@@ -223,16 +226,19 @@ file_out = [
 # RUN CODE
 ##################
 
+path_idx = 0 # 0 = track, 1 = no_track
 angle_idxs = [0,1,2,3]
-path_idx = 0
 
 files_in = generate_filepaths(paths[path_idx],angles[0],spans,ratios)
 
+
+# GENERATE INFO FILE (same for all angles)
 lines_data = read_json_data_info(files_in,txt)
 lines_data.pop(0) #remove 1st line
 file_out_save = file_out[2].format(angles[0])
 write_text_data(paths[path_idx],file_out_save, lines_data)
 
+# GENERATE REACH & FORCE FILES (same for all angles)
 for angle_idx in angle_idxs:
 
     files_in = generate_filepaths(paths[path_idx],angles[angle_idx],spans,ratios)
