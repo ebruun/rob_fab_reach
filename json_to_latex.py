@@ -223,7 +223,7 @@ txt = [
     "&\\scriptsize{{\makecell[lc]{{n={}\\\\{:.0f}kg}}}}",
 ]
 
-
+# generate these files
 file_out = [
     "_a{:0>2}_reachability_latex.txt",
     "_a{:0>2}_force_latex.txt",
