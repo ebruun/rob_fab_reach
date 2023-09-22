@@ -3,6 +3,7 @@
 *.3dmbak
 output/*.png
 *.rhl
+H2A_figures.3dm
 # -----------
 
 # Byte-compiled / optimized / DLL files
