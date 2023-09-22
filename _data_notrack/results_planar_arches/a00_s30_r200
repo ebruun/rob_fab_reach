@@ -5,28 +5,58 @@
         "ratio": 2.0
     }, 
     "reach_data_coop": {
-        "bricks_total": 92, 
-        "bricks_reach": 84, 
-        "bricks_notreach": 8, 
-        "reach_ratio": 0.91000000000000003, 
-        "avg_reach_score": 83
+        "bricks_total": 95, 
+        "bricks_reach": 81, 
+        "bricks_notreach": 14, 
+        "reach_ratio": 0.84999999999999998, 
+        "avg_reach_score": 75
     }, 
     "reach_data_single": {
-        "bricks_total": 92, 
-        "bricks_reach": 91, 
-        "bricks_notreach": 1, 
-        "reach_ratio": 0.98999999999999999, 
-        "avg_reach_score": 84
+        "bricks_total": 95, 
+        "bricks_reach": 92, 
+        "bricks_notreach": 3, 
+        "reach_ratio": 0.96999999999999997, 
+        "avg_reach_score": 76
     }, 
     "analysis_data": {
         "100%": {
-            "mass_kg": 245.74000000000001, 
-            "disp_cm": 0.0091999999999999998, 
-            "rob_support_kg": 126.06999999999999, 
+            "mass_kg": 251.80000000000001, 
+            "disp_cm": 0.0030000000000000001, 
+            "rob_support_kg": 130.47, 
             "rxn_force_kn": [
-                -0.25, 
+                -0.22, 
+                -0.0, 
+                1.26
+            ], 
+            "rxn_mom_knm": [
                 0.0, 
-                1.23
+                0.0, 
+                0.0
+            ]
+        }, 
+        "75%": {
+            "mass_kg": 188.18000000000001, 
+            "disp_cm": 0.0025999999999999999, 
+            "rob_support_kg": 67.390000000000001, 
+            "rxn_force_kn": [
+                -0.20999999999999999, 
+                -0.0, 
+                1.26
+            ], 
+            "rxn_mom_knm": [
+                0.0, 
+                0.0, 
+                0.0
+            ]
+        }, 
+        "50%": {
+            "mass_kg": 127.23, 
+            "disp_cm": 0.0035999999999999999, 
+            "rob_support_kg": 19.57, 
+            "rxn_force_kn": [
+                -0.17999999999999999, 
+                0.0, 
+                1.21
             ], 
             "rxn_mom_knm": [
                 -0.0, 
@@ -34,59 +64,14 @@
                 0.0
             ]
         }, 
-        "75%": {
-            "mass_kg": 184.30000000000001, 
-            "disp_cm": 0.0051999999999999998, 
-            "rob_support_kg": 67.829999999999998, 
-            "rxn_force_kn": [
-                -0.22, 
-                -0.0, 
-                1.21
-            ], 
-            "rxn_mom_knm": [
-                -0.0, 
-                0.059999999999999998, 
-                0.0
-            ]
-        }, 
-        "50%": {
-            "mass_kg": 122.87, 
-            "disp_cm": 0.0061000000000000004, 
-            "rob_support_kg": 22.82, 
-            "rxn_force_kn": [
-                -0.22, 
-                -0.0, 
-                1.24
-            ], 
-            "rxn_mom_knm": [
-                -0.0, 
-                0.070000000000000007, 
-                0.0
-            ]
-        }, 
         "25%": {
-            "mass_kg": 61.439999999999998, 
+            "mass_kg": 63.630000000000003, 
             "disp_cm": 0.00089999999999999998, 
-            "rob_support_kg": 27.300000000000001, 
+            "rob_support_kg": 28.260000000000002, 
             "rxn_force_kn": [
                 0.02, 
                 0.0, 
-                0.34000000000000002
-            ], 
-            "rxn_mom_knm": [
-                0.0, 
-                0.040000000000000001, 
-                0.0
-            ]
-        }, 
-        "99%": {
-            "mass_kg": 182.30000000000001, 
-            "disp_cm": 0.0064000000000000003, 
-            "rob_support_kg": 92.609999999999999, 
-            "rxn_force_kn": [
-                -0.19, 
-                -0.0, 
-                0.92000000000000004
+                0.35999999999999999
             ], 
             "rxn_mom_knm": [
                 -0.0, 

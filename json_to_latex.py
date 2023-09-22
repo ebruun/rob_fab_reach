@@ -214,13 +214,13 @@ spans = [2.0, 3.0, 4.0, 5.0, 6.0, 7.0]
 ratios = [0.25, 0.50, 0.75, 1.0, 1.5, 2.0]
 
 txt = [
-    "\\\\[-0.2em]\cmidrule{2-8}\\\\[-1.3em]",
+    "\\\\[-0.01em]\cmidrule{2-8}\\\\[-1.3em]",
     "&\multicolumn{{1}}{{c|}}{{\makecell[lc]{{\\\\{:.2f}}}}}",
     "&\\tiny{{\makecell[lc]{{S:{:.0f}\\%\\\\C:{:.0f}\\%\\\\fab:{}}}}}",
     "&\\tiny\cellcolor{{{}}}{{\makecell[lc]{{S:{:.0f}\\%\\\\C:{:.0f}\\%\\\\fab:{}}}}}",
     "&\\tiny{{\makecell[lc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
     "&\\tiny\cellcolor{{{}}}{{\makecell[lc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
-    "&\\scriptsize{{\makecell[lc]{{n={}\\\\{:.0f}kg}}}}",
+    "&\\footnotesize{{\makecell[lc]{{n={}\\\\{:.0f}kg}}}}",
 ]
 
 # generate these files
@@ -235,7 +235,7 @@ file_out = [
 # RUN CODE
 ##################
 
-path_idx = 0  # 0 = track, 1 = no_track
+path_idx = 1  # 0 = track, 1 = no_track
 angle_idxs = [0, 1, 2, 3]
 
 files_in = generate_filepaths(paths[path_idx], angles[0], spans, ratios)

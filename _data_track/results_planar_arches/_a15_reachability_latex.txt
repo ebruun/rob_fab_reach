@@ -5,7 +5,7 @@
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:163}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:161}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{S:96\%\\C:92\%\\fab:147}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\0.50}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:154}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:165}}
@@ -13,7 +13,7 @@
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:169}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:164}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{S:95\%\\C:93\%\\fab:139}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\0.75}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:161}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:168}}
@@ -21,7 +21,7 @@
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:163}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:145}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{S:97\%\\C:76\%\\fab:107}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\1.00}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:163}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:168}}
@@ -29,7 +29,7 @@
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:145}}
 &\tiny\cellcolor{lightyellow}{\makecell[lc]{S:100\%\\C:71\%\\fab:117}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{S:97\%\\C:39\%\\fab:74}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\1.50}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:166}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:156}}
@@ -37,7 +37,7 @@
 &\tiny\cellcolor{lightred}{\makecell[lc]{S:88\%\\C:59\%\\fab:101}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{S:71\%\\C:49\%\\fab:73}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{S:54\%\\C:21\%\\fab:41}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\2.00}}
 &\tiny{\makecell[lc]{S:100\%\\C:100\%\\fab:161}}
 &\tiny\cellcolor{lightyellow}{\makecell[lc]{S:100\%\\C:78\%\\fab:133}}

@@ -5,7 +5,7 @@
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:165\\75\%:132\\50\%:72}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:202\\75\%:166\\50\%:102}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:239\\75\%:202\\50\%:134}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\0.50}}
 &\tiny{\makecell[lc]{max:48\\75\%:32\\50\%:16}}
 &\tiny\cellcolor{lightyellow}{\makecell[lc]{max:74\\75\%:54\\50\%:28}}
@@ -13,7 +13,7 @@
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:123\\75\%:93\\50\%:64}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:150\\75\%:113\\50\%:85}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:175\\75\%:132\\50\%:105}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\0.75}}
 &\tiny{\makecell[lc]{max:49\\75\%:32\\50\%:16}}
 &\tiny\cellcolor{lightyellow}{\makecell[lc]{max:73\\75\%:49\\50\%:27}}
@@ -21,7 +21,7 @@
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:121\\75\%:83\\50\%:57}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:147\\75\%:100\\50\%:73}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:171\\75\%:117\\50\%:88}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\1.00}}
 &\tiny{\makecell[lc]{max:51\\75\%:32\\50\%:15}}
 &\tiny\cellcolor{lightyellow}{\makecell[lc]{max:77\\75\%:49\\50\%:27}}
@@ -29,7 +29,7 @@
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:129\\75\%:84\\50\%:53}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:155\\75\%:101\\50\%:67}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:180\\75\%:116\\50\%:80}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\1.50}}
 &\tiny{\makecell[lc]{max:61\\75\%:39\\50\%:15}}
 &\tiny\cellcolor{lightyellow}{\makecell[lc]{max:91\\75\%:57\\50\%:27}}
@@ -37,7 +37,7 @@
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:152\\75\%:96\\50\%:52}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:183\\75\%:115\\50\%:65}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:213\\75\%:133\\50\%:77}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\2.00}}
 &\tiny\cellcolor{lightyellow}{\makecell[lc]{max:71\\75\%:47\\50\%:15}}
 &\tiny\cellcolor{lightyellow}{\makecell[lc]{max:106\\75\%:68\\50\%:28}}

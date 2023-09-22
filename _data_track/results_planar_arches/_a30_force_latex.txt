@@ -5,7 +5,7 @@
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:123\\75\%:101\\50\%:60}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:149\\75\%:125\\50\%:82}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:176\\75\%:150\\50\%:106}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\0.50}}
 &\tiny{\makecell[lc]{max:40\\75\%:28\\50\%:16}}
 &\tiny{\makecell[lc]{max:60\\75\%:45\\50\%:26}}
@@ -13,7 +13,7 @@
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:100\\75\%:76\\50\%:54}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:121\\75\%:93\\50\%:69}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:140\\75\%:108\\50\%:84}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\0.75}}
 &\tiny{\makecell[lc]{max:41\\75\%:29\\50\%:16}}
 &\tiny{\makecell[lc]{max:61\\75\%:44\\50\%:26}}
@@ -21,7 +21,7 @@
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:101\\75\%:74\\50\%:50}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:122\\75\%:89\\50\%:63}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:142\\75\%:104\\50\%:75}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\1.00}}
 &\tiny{\makecell[lc]{max:43\\75\%:30\\50\%:17}}
 &\tiny{\makecell[lc]{max:65\\75\%:46\\50\%:28}}
@@ -29,7 +29,7 @@
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:108\\75\%:79\\50\%:50}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:130\\75\%:95\\50\%:62}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:151\\75\%:109\\50\%:73}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\1.50}}
 &\tiny{\makecell[lc]{max:50\\75\%:38\\50\%:18}}
 &\tiny\cellcolor{lightyellow}{\makecell[lc]{max:75\\75\%:56\\50\%:30}}
@@ -37,7 +37,7 @@
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:125\\75\%:94\\50\%:55}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:150\\75\%:114\\50\%:67}}
 &\tiny\cellcolor{lightred}{\makecell[lc]{max:175\\75\%:131\\50\%:79}}
-\\[-0.2em]\cmidrule{2-8}\\[-1.3em]
+\\[-0.01em]\cmidrule{2-8}\\[-1.3em]
 &\multicolumn{1}{c|}{\makecell[lc]{\\2.00}}
 &\tiny{\makecell[lc]{max:57\\75\%:47\\50\%:20}}
 &\tiny\cellcolor{lightyellow}{\makecell[lc]{max:84\\75\%:68\\50\%:34}}
