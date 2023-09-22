@@ -5,9 +5,10 @@ from collections import OrderedDict
 
 
 def generate_filename(a, s, r):
-    name = "a{:0>2}_s{:0>2}_r{:0>3}"
+    name = "a{:0>3}_s{:0>2}_r{:0>3}"
 
-    angle = str(a).split(".")[0]
+    # angle = str(a).split(".")[0]
+    angle = str(int(a * 10))
     span = str(s).replace(".", "")
     ratio = str(int(round(r * 100, 0))).replace(".", "")
 
