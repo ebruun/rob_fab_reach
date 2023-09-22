@@ -3,7 +3,8 @@
 *.3dmbak
 output/*.png
 *.rhl
-H2A_figures.3dm
+3dm/H2A_figures.3dm
+3dm/H2A_figures_embedded_files
 # -----------
 
 # Byte-compiled / optimized / DLL files
@@ -135,3 +136,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
