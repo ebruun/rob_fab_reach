@@ -1,0 +1,83 @@
+{
+    "arch_info": {
+        "angle": 0.0, 
+        "span": 7.0, 
+        "ratio": 1.25
+    }, 
+    "reach_data_coop": {
+        "bricks_total": 158, 
+        "bricks_reach": 51, 
+        "bricks_notreach": 107, 
+        "reach_ratio": 0.32000000000000001, 
+        "avg_reach_score": 39
+    }, 
+    "reach_data_single": {
+        "bricks_total": 158, 
+        "bricks_reach": 72, 
+        "bricks_notreach": 86, 
+        "reach_ratio": 0.46000000000000002, 
+        "avg_reach_score": 40
+    }, 
+    "analysis_data": {
+        "100%": {
+            "mass_kg": 421.17000000000002, 
+            "disp_cm": 0.0104, 
+            "rob_support_kg": 224.24000000000001, 
+            "rxn_force_kn": [
+                -0.66000000000000003, 
+                -0.0, 
+                2.1000000000000001
+            ], 
+            "rxn_mom_knm": [
+                0.0, 
+                0.01, 
+                0.0
+            ]
+        }, 
+        "75%": {
+            "mass_kg": 317.19999999999999, 
+            "disp_cm": 0.0085000000000000006, 
+            "rob_support_kg": 127.39, 
+            "rxn_force_kn": [
+                -0.66000000000000003, 
+                0.0, 
+                2.1000000000000001
+            ], 
+            "rxn_mom_knm": [
+                0.0, 
+                0.01, 
+                0.0
+            ]
+        }, 
+        "50%": {
+            "mass_kg": 210.58000000000001, 
+            "disp_cm": 0.0121, 
+            "rob_support_kg": 63.740000000000002, 
+            "rxn_force_kn": [
+                -0.62, 
+                0.0, 
+                2.0699999999999998
+            ], 
+            "rxn_mom_knm": [
+                -0.0, 
+                0.040000000000000001, 
+                0.0
+            ]
+        }, 
+        "25%": {
+            "mass_kg": 106.63, 
+            "disp_cm": 0.0088000000000000005, 
+            "rob_support_kg": 18.940000000000001, 
+            "rxn_force_kn": [
+                -0.10000000000000001, 
+                0.0, 
+                0.90000000000000002
+            ], 
+            "rxn_mom_knm": [
+                -0.0, 
+                0.12, 
+                0.0
+            ]
+        }
+    }
+}
