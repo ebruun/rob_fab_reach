@@ -46,6 +46,7 @@ def read_json_data_info(files_in, txt):
             print("opening: {}".format(data_in["arch_info"]))
 
             ratio = data_in["arch_info"]["ratio"]
+            span = data_in["arch_info"]["span"]
 
             bricks_total = data_in["reach_data_coop"]["bricks_total"]
             # mass_total = data_in["analysis_data"]["100%"]["mass_kg"]
@@ -53,16 +54,13 @@ def read_json_data_info(files_in, txt):
             # correct self-weight, for some reason karamba output total weight wrong
             mass_total = bricks_total * 2.70928  # kg/brick
 
+            height = ratio * span / 2
+
             if i % 6 == 0:
                 lines_data.append(txt[0])
                 lines_data.append(txt[1].format(ratio))
 
-            lines_data.append(
-                txt[6].format(
-                    bricks_total,
-                    mass_total,
-                )
-            )
+            lines_data.append(txt[6].format(bricks_total, mass_total, height))
 
             i += 1
             f.close()
@@ -217,7 +215,7 @@ txt = [
     "&\\tiny\cellcolor{{{}}}{{\makecell[lc]{{C:{:.0f}\\%\\\\fab:{}}}}}",
     "&\\tiny{{\makecell[lc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
     "&\\tiny\cellcolor{{{}}}{{\makecell[lc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
-    "&\\footnotesize{{\makecell[lc]{{n={}\\\\{:.0f}kg}}}}",
+    "&\\footnotesize{{\makecell[lc]{{n={}\\\\{:.0f}kg\\\\{:.1f}m}}}}",
 ]
 
 # generate these files
