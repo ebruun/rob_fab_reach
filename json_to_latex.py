@@ -45,7 +45,7 @@ def read_json_data_info(files_in, txt):
 
             print("opening: {}".format(data_in["arch_info"]))
 
-            ratio = data_in["arch_info"]["ratio"]
+            ratio = data_in["arch_info"]["ratio"] / 2
             span = data_in["arch_info"]["span"]
 
             bricks_total = data_in["reach_data_coop"]["bricks_total"]
@@ -54,7 +54,7 @@ def read_json_data_info(files_in, txt):
             # correct self-weight, for some reason karamba output total weight wrong
             mass_total = bricks_total * 2.70928  # kg/brick
 
-            height = ratio * span / 2
+            height = ratio * span
 
             if i % 6 == 0:
                 lines_data.append(txt[0])
@@ -78,7 +78,7 @@ def read_json_data_reach(files_in, txt):
 
             print("opening: {}".format(data_in["arch_info"]))
 
-            ratio = data_in["arch_info"]["ratio"]
+            ratio = data_in["arch_info"]["ratio"] / 2
 
             reach_ratio_coop = data_in["reach_data_coop"]["reach_ratio"]
             # reach_ratio_single = data_in["reach_data_single"]["reach_ratio"]
@@ -129,7 +129,7 @@ def read_json_data_force(files_in, txt, force_limit):
 
             print("opening: {}".format(data_in["arch_info"]))
 
-            ratio = data_in["arch_info"]["ratio"]
+            ratio = data_in["arch_info"]["ratio"] / 2
 
             force_100 = data_in["analysis_data"]["100%"]["rob_support_kg"]
             force_75 = data_in["analysis_data"]["75%"]["rob_support_kg"]
@@ -210,12 +210,12 @@ ratios = [0.25, 0.50, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0]
 
 txt = [
     "\\\\[-0.2em]\cmidrule{2-8}\\\\[-1.3em]",
-    "&\multicolumn{{1}}{{c|}}{{\makecell[lc]{{\\\\{:.2f}}}}}",
+    "&\multicolumn{{1}}{{c|}}{{\makecell[lc]{{\\\\{:.3f}}}}}",
     "&\\tiny{{\makecell[lc]{{C:{:.0f}\\%\\\\fab:{}}}}}",
     "&\\tiny\cellcolor{{{}}}{{\makecell[lc]{{C:{:.0f}\\%\\\\fab:{}}}}}",
     "&\\tiny{{\makecell[lc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
     "&\\tiny\cellcolor{{{}}}{{\makecell[lc]{{max:{:.0f}\\\\75\\%:{:.0f}\\\\50\\%:{:.0f}}}}}",
-    "&\\footnotesize{{\makecell[lc]{{n={}\\\\{:.0f}kg\\\\{:.1f}m}}}}",
+    "&\\footnotesize{{\makecell[lc]{{n={}\\\\{:.0f}kg\\\\{:.2f}m}}}}",
 ]
 
 # generate these files

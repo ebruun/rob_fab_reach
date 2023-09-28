@@ -26,7 +26,7 @@ def interpolate_data(X, Y, Z1, X_finer, Y_finer, method="linear"):
 
 
 X = np.arange(2, 7.1, 1)
-Y = np.arange(0.25, 2.01, 0.25)
+Y = np.arange(0.125, 1.01, 0.125)
 
 Z1 = np.array(
     [
@@ -56,7 +56,7 @@ Z2 = np.array(
 
 # Define the finer X and Y grids
 X_finer = np.arange(2, 7.000001, 1 / 100)
-Y_finer = np.arange(0.25, 2.000001, 0.25 / 100)
+Y_finer = np.arange(0.125, 1.000001, 0.125 / 100)
 
 # Interpolate the data
 Z1_finer = interpolate_data(X, Y, Z1, X_finer, Y_finer)
@@ -77,12 +77,12 @@ surf1 = axs[0].contourf(X, Y, Z1_finer, np.linspace(0, 200, 81), vmin=0, vmax=20
 surf2 = axs[1].contourf(X, Y, Z2_finer, np.linspace(0, 200, 81), vmin=0, vmax=200, cmap=cm.coolwarm)
 
 # Contours
-contour1 = axs[0].contour(X, Y, Z1_finer, levels=[25, 50, 75, 100, 125, 150, 170], colors="k")
+contour1 = axs[0].contour(X, Y, Z1_finer, levels=[25, 50, 75, 100, 125, 150], colors="k")
 contour2 = axs[1].contour(X, Y, Z2_finer, levels=[25, 50, 75, 100, 125], colors="k")
 
 # Add points with labels to the surface
 points_x = [4, 4]  # X-coordinates of points
-points_y = [0.75, 0.75]  # Y-coordinates of points
+points_y = [0.375, 0.375]  # Y-coordinates of points
 point_labels = ["max:172", "max:134"]  # Labels for the points
 
 point1 = axs[0].scatter(points_x[0], points_y[0], color="black", marker="o", label="Points")
@@ -90,8 +90,8 @@ point2 = axs[1].scatter(points_x[1], points_y[1], color="black", marker="o", lab
 
 for ax in axs:
     ax.set_xlabel("$Span (m)$", fontsize=12)
-    ax.set_ylabel("$Rise/Run$", fontsize=12)
-    ax.yaxis.set_major_locator(plt.MultipleLocator(0.25))
+    ax.set_ylabel("$Rise-to-Span$", fontsize=12)
+    ax.yaxis.set_major_locator(plt.MultipleLocator(0.125))
     ax.set_ylim(ax.get_ylim()[::-1])
     ax.xaxis.tick_top()
     ax.xaxis.set_label_position("top")
@@ -109,8 +109,8 @@ axs[1].annotate(
     point_labels[1], (points_x[1], points_y[1] - 0.02), fontsize=9, color="black", ha="center"
 )
 
-axs[0].set_title("Medium-Payload Robot on Track Setup", fontsize=16)
-axs[1].set_title("High-Payload Fixed Robot Setup", fontsize=16)
+axs[0].set_title("Medium-Payload Robot on Track Setup", fontsize=13, y=-0.05)
+axs[1].set_title("High-Payload Fixed Robot Setup", fontsize=13, y=-0.05)
 
 
 # Add a color bar which maps values to colors.
