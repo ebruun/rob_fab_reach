@@ -36,3 +36,7 @@ json_to_latex.py:
 * takes the output from grasshopper, which checks the planar arches against the reachability map, and is exported as a .json file
 * turns all the output data into a latex table that can be copied into the table
 * individual results are saved in `results_planar_arches` folder. output for the paper is in the format '_a##' based on the inclination angle
+
+gradient.py
+* work in progress...
+* idea was to use gradient descent on the discrete reachability maps to plan where to put an object to maximize reachability

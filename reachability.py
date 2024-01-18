@@ -226,7 +226,7 @@ def points_ranges(rob_num, n):
             "k": np.arange(-0.4, 3.41, 0.1),
             "name": "{}_vec{:0>3}".format(rob_num, n),
         }
- 
+
     elif rob_num == "rob3":
         ranges = {
             "i": np.arange(1.7, 8.01, 0.1),
@@ -258,8 +258,6 @@ def frame_gen(axis, ranges):
                 f = Frame.from_plane(plane)
 
                 yield [Frame(f.point, f.xaxis, f.yaxis)]
-
-
 
 
 def axis_gen(samples=100):
